@@ -304,6 +304,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 /* ===== Score Gradient Bar ===== */
 .score-gradient{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--danger) 0%,var(--danger) 40%,var(--warning) 40%,var(--warning) 70%,var(--success) 70%,var(--success) 100%)}
 
+/* ===== Station Score (站内/站外) ===== */
+.station-row{display:flex;gap:8px;margin-top:6px;margin-bottom:4px}
+.station-tag{flex:1;display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:8px;font-size:.78rem;font-weight:600}
+.station-tag.in{background:rgba(46,117,182,.08);color:var(--primary);border:1px solid rgba(46,117,182,.18)}
+.station-tag.out{background:rgba(123,45,142,.07);color:var(--purple);border:1px solid rgba(123,45,142,.18)}
+.station-tag .st-label{opacity:.7;font-weight:500}
+.station-tag .st-score{font-size:.88rem}
+.station-bar{height:4px;border-radius:2px;background:#EDF2F7;flex:1;overflow:hidden}
+.station-bar-fill{height:100%;border-radius:2px;transition:width .5s ease}
+
 /* ===== Edit Modal ===== */
 .edit-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.3);z-index:300;align-items:center;justify-content:center}
 .edit-overlay.show{display:flex}
@@ -938,6 +948,7 @@ let tracks = [
   {
     id:0, name:'移动监控机器人',
     scores:{supply:10,deal:15,user:9,competition:16},
+    stationIn:{score:27,max:61}, stationOut:{score:24,max:39},
     prevScores:{supply:10,deal:15,user:9,competition:17},
     indicators:[
       [4,0,2,4],[6,7,0,2],[0,7,0,2],[4,7,3,4]
@@ -951,6 +962,7 @@ let tracks = [
   {
     id:1, name:'桌面机器人',
     scores:{supply:11,deal:16,user:8,competition:15},
+    stationIn:{score:28,max:61}, stationOut:{score:22,max:39},
     prevScores:{supply:9,deal:16,user:8,competition:15},
     indicators:[
       [2,4,1,4],[5,7,0,4],[2,4,0,2],[2,7,2,4]
@@ -964,6 +976,7 @@ let tracks = [
   {
     id:2, name:'安防/巡逻/巡检/安检机器人',
     scores:{supply:15,deal:15,user:4,competition:15},
+    stationIn:{score:34,max:61}, stationOut:{score:15,max:39},
     prevScores:{supply:15,deal:15,user:4,competition:17},
     indicators:[
       [4,4,2,5],[8,7,0,0],[2,2,0,0],[4,5,2,4]
@@ -1101,6 +1114,18 @@ function renderTrackCards(){
         </div>
         <div class="track-progress">
           <div class="track-progress-fill" style="width:${total}%;background:${TRACK_COLORS[i]}"></div>
+        </div>
+        <div class="station-row">
+          <div class="station-tag in">
+            <span class="st-label">站内</span>
+            <span class="st-score">${t.stationIn?t.stationIn.score:'?'}/${t.stationIn?t.stationIn.max:61}</span>
+            <div class="station-bar"><div class="station-bar-fill" style="width:${t.stationIn?(t.stationIn.score/t.stationIn.max*100):0}%;background:var(--primary)"></div></div>
+          </div>
+          <div class="station-tag out">
+            <span class="st-label">站外</span>
+            <span class="st-score">${t.stationOut?t.stationOut.score:'?'}/${t.stationOut?t.stationOut.max:39}</span>
+            <div class="station-bar"><div class="station-bar-fill" style="width:${t.stationOut?(t.stationOut.score/t.stationOut.max*100):0}%;background:var(--purple)"></div></div>
+          </div>
         </div>
         <div class="dim-bars">
           ${dims.map((d,j) => `

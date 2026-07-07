@@ -947,70 +947,82 @@ const PENDING_SOURCE = '待补充';
 let tracks = [
   {
     id:0, name:'移动监控机器人',
-    scores:{supply:10,deal:15,user:9,competition:16},
-    stationIn:{score:27,max:61}, stationOut:{score:24,max:39},
-    prevScores:{supply:10,deal:15,user:9,competition:17},
+    scores:{supply:17,deal:27,user:21,competition:40},
+    dimMaxes:[45,51,44,58],
+    stationIn:{score:44,max:100}, stationOut:{score:61,max:100},
+    prevStationIn:{score:44,max:100}, prevStationOut:{score:64,max:100},
+    prevScores:{supply:17,deal:27,user:21,competition:42},
     indicators:[
-      [4,0,2,4],[6,7,0,2],[0,7,0,2],[4,7,3,4]
+      [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
     ],
     prevIndicators:[
-      [4,0,2,4],[6,7,0,2],[0,7,0,2],[4,7,2,4]
+      [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
     ],
     stage:'成长期',
     keyInsight:'工信部AI+制造专项支持具身智能; 4G移动监控户外占比48.4%'
   },
   {
     id:1, name:'桌面机器人',
-    scores:{supply:11,deal:16,user:8,competition:15},
-    stationIn:{score:28,max:61}, stationOut:{score:22,max:39},
-    prevScores:{supply:9,deal:16,user:8,competition:15},
+    scores:{supply:15,deal:30,user:16,competition:37},
+    dimMaxes:[45,51,44,58],
+    stationIn:{score:42,max:100}, stationOut:{score:56,max:100},
+    prevStationIn:{score:37,max:100}, prevStationOut:{score:56,max:100},
+    prevScores:{supply:13,deal:30,user:16,competition:37},
     indicators:[
-      [2,4,1,4],[5,7,0,4],[2,4,0,2],[2,7,2,4]
+      [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
     ],
     prevIndicators:[
-      [2,2,1,4],[5,7,0,4],[2,4,0,2],[2,7,2,4]
+      [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
     ],
-    stage:'成长期',
+    stage:'孕化期',
     keyInsight:'Loona Deskmate CES 2026发布; Reachy Mini 5天售$100万+; 口碑两极分化'
   },
   {
     id:2, name:'安防/巡逻/巡检/安检机器人',
-    scores:{supply:15,deal:15,user:4,competition:15},
-    stationIn:{score:34,max:61}, stationOut:{score:15,max:39},
-    prevScores:{supply:15,deal:15,user:4,competition:17},
+    scores:{supply:25,deal:25,user:8,competition:40},
+    dimMaxes:[45,51,44,58],
+    stationIn:{score:55,max:100}, stationOut:{score:43,max:100},
+    prevStationIn:{score:55,max:100}, prevStationOut:{score:49,max:100},
+    prevScores:{supply:25,deal:25,user:8,competition:45},
     indicators:[
-      [4,4,2,5],[8,7,0,0],[2,2,0,0],[4,5,2,4]
+      [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,5,10]
     ],
     prevIndicators:[
-      [4,4,2,5],[8,7,0,0],[2,2,0,0],[4,7,2,4]
+      [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,5,10]
     ],
-    stage:'成长期',
+    stage:'孕化期',
     keyInsight:'市场31.85亿(+16%); 亿嘉和亏损收窄至4156万; 申昊Q1营收+258.7%'
   },
   {
     id:3, name:'AI智能锁',
-    scores:{supply:20,deal:11,user:7,competition:18},
-    prevScores:{supply:18,deal:14,user:7,competition:20},
+    scores:{supply:32,deal:25,user:16,competition:44},
+    dimMaxes:[45,51,44,58],
+    stationIn:{score:59,max:100}, stationOut:{score:58,max:100},
+    prevStationIn:{score:56,max:100}, prevStationOut:{score:64,max:100},
+    prevScores:{supply:29,deal:28,user:16,competition:50},
     indicators:[
-      [6,5,4,5],[8,2,0,1],[0,5,0,2],[8,4,5,4]
+      [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,10,10,10]
     ],
     prevIndicators:[
-      [6,4,4,4],[8,4,0,2],[0,5,0,2],[8,4,4,4]
+      [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,10,10,10]
     ],
     stage:'成长期',
     keyInsight:'Q1销量-5.3%, 618量价额齐降; 萤石Y30双冠, 德施曼618第一; 以旧换新政策利好'
   },
   {
     id:4, name:'AI监控摄像头',
-    scores:{supply:24,deal:14,user:9,competition:18},
-    prevScores:{supply:24,deal:14,user:9,competition:19},
+    scores:{supply:43,deal:25,user:21,competition:42},
+    dimMaxes:[45,51,44,58],
+    stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
+    prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
+    prevScores:{supply:43,deal:25,user:21,competition:45},
     indicators:[
-      [8,7,5,4],[8,4,0,2],[0,7,0,2],[8,2,4,4]
+      [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
     ],
     prevIndicators:[
-      [8,7,5,4],[8,4,0,2],[0,7,0,2],[8,2,4,5]
+      [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
     ],
-    stage:'加速期',
+    stage:'成长期',
     keyInsight:'Q1线上1316万台; 8MP成主流(36.9%); 萤石十余款AI新品发布'
   }
 ];
@@ -1036,8 +1048,8 @@ let barChart = null;
 let editContext = null;
 
 // ===== HELPERS =====
-function getTotal(t){ return t.scores.supply + t.scores.deal + t.scores.user + t.scores.competition; }
-function getPrevTotal(t){ return t.prevScores.supply + t.prevScores.deal + t.prevScores.user + t.prevScores.competition; }
+function getTotal(t){ return t.stationIn ? Math.round((t.stationIn.score + t.stationOut.score)/2) : t.scores.supply + t.scores.deal + t.scores.user + t.scores.competition; }
+function getPrevTotal(t){ return t.prevStationIn ? Math.round((t.prevStationIn.score + t.prevStationOut.score)/2) : t.prevScores.supply + t.prevScores.deal + t.prevScores.user + t.prevScores.competition; }
 function getStage(score, track){
   // Use explicit stage if set on track
   if(track && track.stage){
@@ -1048,6 +1060,7 @@ function getStage(score, track){
   return STAGES[STAGES.length-1];
 }
 function getDimScores(t){ return [t.scores.supply, t.scores.deal, t.scores.user, t.scores.competition]; }
+function getDimMaxes(t){ return t.dimMaxes || [45,51,44,58]; }
 function getPrevDimScores(t){ return [t.prevScores.supply, t.prevScores.deal, t.prevScores.user, t.prevScores.competition]; }
 function scoreClass(val,max){
   if(val === 0) return 'score-muted';
@@ -1093,14 +1106,16 @@ function renderKPI(){
 // ===== RENDER TRACK CARDS =====
 function renderTrackCards(){
   const grid = document.getElementById('trackGrid');
+  const dimNames = ['供给','成交','用户','竞争'];
   grid.innerHTML = tracks.map((t,i) => {
     const total = getTotal(t);
     const prev = getPrevTotal(t);
     const diff = total - prev;
     const stage = getStage(total, t);
     const dims = getDimScores(t);
-    const dimMaxes = [25,25,25,25];
-    const dimNames = ['供给','成交','用户','竞争'];
+    const dm = t.dimMaxes || [45,51,44,58];
+    const si = t.stationIn ? t.stationIn.score : 0;
+    const so = t.stationOut ? t.stationOut.score : 0;
     return `
       <div class="track-card animate-in delay-${i+1}">
         <div class="track-card-header">
@@ -1117,21 +1132,21 @@ function renderTrackCards(){
         </div>
         <div class="station-row">
           <div class="station-tag in">
-            <span class="st-label">站内</span>
-            <span class="st-score">${t.stationIn?t.stationIn.score:'?'}/${t.stationIn?t.stationIn.max:61}</span>
-            <div class="station-bar"><div class="station-bar-fill" style="width:${t.stationIn?(t.stationIn.score/t.stationIn.max*100):0}%;background:var(--primary)"></div></div>
+            <span class="st-label">站内(淘系)</span>
+            <span class="st-score">${si}/100</span>
+            <div class="station-bar"><div class="station-bar-fill" style="width:${si}%;background:var(--primary)"></div></div>
           </div>
           <div class="station-tag out">
-            <span class="st-label">站外</span>
-            <span class="st-score">${t.stationOut?t.stationOut.score:'?'}/${t.stationOut?t.stationOut.max:39}</span>
-            <div class="station-bar"><div class="station-bar-fill" style="width:${t.stationOut?(t.stationOut.score/t.stationOut.max*100):0}%;background:var(--purple)"></div></div>
+            <span class="st-label">站外(公开)</span>
+            <span class="st-score">${so}/100</span>
+            <div class="station-bar"><div class="station-bar-fill" style="width:${so}%;background:var(--purple)"></div></div>
           </div>
         </div>
         <div class="dim-bars">
           ${dims.map((d,j) => `
             <div class="dim-bar-item">
-              <div class="dim-bar-label"><span>${dimNames[j]}</span><span>${d}/25</span></div>
-              <div class="dim-bar-track"><div class="dim-bar-fill" style="width:${d/25*100}%;background:${DIM_COLORS[j]}"></div></div>
+              <div class="dim-bar-label"><span>${dimNames[j]}</span><span>${d}/${dm[j]}</span></div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" style="width:${d/dm[j]*100}%;background:${DIM_COLORS[j]}"></div></div>
             </div>
           `).join('')}
         </div>

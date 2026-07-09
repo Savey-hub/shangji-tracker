@@ -323,6 +323,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .edit-modal input[type=number]{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:1rem;margin-bottom:12px}
 .edit-modal input[type=number]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,117,182,.15)}
 .edit-modal .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.social-row{display:flex;gap:16px;margin:6px 0;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.06)}
+.social-item{display:flex;align-items:center;gap:5px;flex:1;min-width:0}
+.social-icon{font-size:15px;flex-shrink:0}
+.social-label{color:var(--text-secondary);font-size:11px;flex-shrink:0}
+.social-val{color:var(--text-primary);font-weight:600;font-size:12px}
+.social-likes{color:var(--accent);font-size:11px;font-weight:500}
 </style>
 </head>
 <body>
@@ -951,6 +957,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:44,max:100}, stationOut:{score:61,max:100},
     prevStationIn:{score:44,max:100}, prevStationOut:{score:64,max:100},
+    social:{xhs:36,xhsLikes:4702,dy:0,dyLikes:0,scrapedAt:'2026-07-09'},
     prevScores:{supply:17,deal:27,user:21,competition:42},
     indicators:[
       [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
@@ -967,6 +974,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:42,max:100}, stationOut:{score:56,max:100},
     prevStationIn:{score:37,max:100}, prevStationOut:{score:56,max:100},
+    social:{xhs:40,xhsLikes:13114,dy:0,dyLikes:0,scrapedAt:'2026-07-09'},
     prevScores:{supply:13,deal:30,user:16,competition:37},
     indicators:[
       [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
@@ -983,6 +991,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:55,max:100}, stationOut:{score:43,max:100},
     prevStationIn:{score:55,max:100}, prevStationOut:{score:49,max:100},
+    social:{xhs:36,xhsLikes:401,dy:0,dyLikes:0,scrapedAt:'2026-07-09'},
     prevScores:{supply:25,deal:25,user:8,competition:45},
     indicators:[
       [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,5,10]
@@ -999,6 +1008,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:59,max:100}, stationOut:{score:58,max:100},
     prevStationIn:{score:56,max:100}, prevStationOut:{score:64,max:100},
+    social:{xhs:40,xhsLikes:5413,dy:0,dyLikes:0,scrapedAt:'2026-07-09'},
     prevScores:{supply:29,deal:28,user:16,competition:50},
     indicators:[
       [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,10,10,10]
@@ -1015,6 +1025,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
     prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
+    social:{xhs:36,xhsLikes:11001,dy:0,dyLikes:0,scrapedAt:'2026-07-09'},
     prevScores:{supply:43,deal:25,user:21,competition:45},
     indicators:[
       [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
@@ -1142,6 +1153,22 @@ function renderTrackCards(){
             <div class="station-bar"><div class="station-bar-fill" style="width:${so}%;background:var(--purple)"></div></div>
           </div>
         </div>
+        ${t.social ? `
+        <div class="social-row">
+          <div class="social-item">
+            <span class="social-icon">📕</span>
+            <span class="social-label">小红书</span>
+            <span class="social-val">${t.social.xhs}笔记</span>
+            <span class="social-likes">${t.social.xhsLikes > 1000 ? (t.social.xhsLikes/1000).toFixed(1)+'k' : t.social.xhsLikes}赞</span>
+          </div>
+          <div class="social-item">
+            <span class="social-icon">🎵</span>
+            <span class="social-label">抖音</span>
+            <span class="social-val">${t.social.dy > 0 ? t.social.dy+'视频' : '待采集'}</span>
+            <span class="social-likes">${t.social.dyLikes > 0 ? (t.social.dyLikes > 1000 ? (t.social.dyLikes/1000).toFixed(1)+'k' : t.social.dyLikes)+'赞' : ''}</span>
+          </div>
+        </div>
+        ` : ''}
         <div class="dim-bars">
           ${dims.map((d,j) => `
             <div class="dim-bar-item">

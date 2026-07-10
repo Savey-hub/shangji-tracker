@@ -349,6 +349,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <a onclick="scrollToSection('timeline')"><span class="icon">&#128197;</span>阶段时间线</a>
     <a onclick="scrollToSection('history')"><span class="icon">&#128221;</span>更新日志</a>
     <a onclick="scrollToSection('weekly-report')"><span class="icon">&#128203;</span>周报摘要</a>
+    <a onclick="scrollToSection('data-sources')"><span class="icon">&#128279;</span>数据源指引</a>
   </nav>
   <div class="sidebar-footer">
     <div>商机孵化看板 v2.1</div>
@@ -885,6 +886,744 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
         </div>
       </div>
     </section>
+
+<!-- ===== Data Source Directory ===== -->
+<style>
+.data-source-section{margin:24px 0;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.ds-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #f97316}
+.ds-section-title{font-size:1.15rem;font-weight:700;color:#111}
+.ds-section-desc{font-size:.8rem;color:#666;margin-top:4px}
+.ds-stats{display:flex;gap:16px}
+.ds-stat{padding:6px 12px;background:#fff7ed;border-radius:8px;font-size:.75rem;color:#c2410c;font-weight:600}
+.ds-group{margin-bottom:24px}
+.ds-group-title{display:flex;align-items:center;gap:8px;font-size:.95rem;font-weight:600;color:#111;padding:8px 12px;background:linear-gradient(90deg,#fff7ed,#ffffff);border-left:4px solid #f97316;border-radius:0 8px 8px 0;margin-bottom:12px}
+.ds-group-count{margin-left:auto;font-size:.75rem;color:#666;font-weight:400}
+.ds-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.ds-item{background:#fafafa;border:1px solid #eee;border-radius:8px;padding:12px;transition:all .2s}
+.ds-item:hover{box-shadow:0 4px 12px rgba(249,115,22,.15);border-color:#fed7aa;transform:translateY(-2px)}
+.ds-item-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.ds-name{color:#c2410c;font-weight:600;text-decoration:none;font-size:.9rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ds-name:hover{color:#f97316;text-decoration:underline}
+.ds-badge{padding:2px 8px;border-radius:10px;font-size:.65rem;font-weight:600;white-space:nowrap;flex-shrink:0}
+.ds-badge-ok{background:#d1fae5;color:#059669}
+.ds-badge-off{background:#f3f4f6;color:#9ca3af}
+.ds-badge-warn{background:#fef3c7;color:#d97706}
+.ds-item-body{font-size:.72rem;color:#6b7280;line-height:1.5}
+.ds-url{color:#9ca3af;font-size:.68rem;word-break:break-all;margin-bottom:4px}
+.ds-note{color:#4b5563;margin-bottom:4px}
+.ds-method{color:#9ca3af;font-size:.68rem}
+.ds-method code{background:#f3f4f6;padding:1px 5px;border-radius:3px;color:#c2410c;font-size:.65rem}
+.ds-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:#6b7280;margin-top:12px;padding-top:12px;border-top:1px dashed #eee}
+.ds-legend-item{display:flex;align-items:center;gap:4px}
+</style>
+<section id="data-sources" class="data-source-section animate-in">
+<div class="ds-section-head">
+<div>
+<div class="ds-section-title">🔗 数据源指引 · 全量陈列</div>
+<div class="ds-section-desc">覆盖站内权威+社媒UGC+学术开放+订阅冗余+自媒体全通道 · 点击卡片可跳转原始站</div>
+</div>
+<div class="ds-stats">
+<div class="ds-stat">📚 总数据源 58 个</div>
+<div class="ds-stat">✅ 已启用 48 个</div>
+<div class="ds-stat">🎯 分类 10 大类</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>🏢</span><span>站内 · 权威数据源</span><span class="ds-group-count">4 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://cia-console.alibaba-inc.com/?business=home_life" target="_blank" class="ds-name">天猫 CIA</a>
+    <span class="ds-badge ds-badge-ok">OK</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://cia-console.alibaba-inc.com/?business=home_life</div>
+    <div class="ds-note">阿里内网, 权威数据: 确收率/成交转化率/客单价/件单价</div>
+    <div class="ds-method">通道: <code>a1 CLI mcp</code></div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://sycm.taobao.com" target="_blank" class="ds-name">淘宝天猫后台生意参谋</a>
+    <span class="ds-badge ds-badge-warn">手工</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://sycm.taobao.com</div>
+    <div class="ds-note">行业实时数据(需手工)</div>
+    <div class="ds-method">通道: <code>manual</code></div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.qian-gua.com" target="_blank" class="ds-name">千瓜 (小红书数据)</a>
+    <span class="ds-badge ds-badge-warn">需登录</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.qian-gua.com</div>
+    <div class="ds-note">小红书站外深度数据, 需登录</div>
+    <div class="ds-method">通道: <code>browser</code></div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.chanmama.com" target="_blank" class="ds-name">蝉妈妈 (抖音数据)</a>
+    <span class="ds-badge ds-badge-warn">需登录</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.chanmama.com</div>
+    <div class="ds-note">抖音站外, 需登录</div>
+    <div class="ds-method">通道: <code>browser</code></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>🎧</span><span>社媒站外 · UGC 声量</span><span class="ds-group-count">4 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.xiaohongshu.com" target="_blank" class="ds-name">小红书</a>
+    <span class="ds-badge ds-badge-ok">OK</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.xiaohongshu.com</div>
+    <div class="ds-note">笔记 + 点赞数据, 通过 cookie 会话抓取</div>
+    <div class="ds-method">通道: <code>cookie session</code></div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.douyin.com" target="_blank" class="ds-name">抖音搜索</a>
+    <span class="ds-badge ds-badge-ok">OK</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.douyin.com</div>
+    <div class="ds-note">移动端综合 tab, 播放/点赞/评论/分享全量</div>
+    <div class="ds-method">通道: <code>playwright mobile UA</code></div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://api.bilibili.com/x/web-interface/search/type" target="_blank" class="ds-name">B站 搜索</a>
+    <span class="ds-badge ds-badge-ok">OK</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://api.bilibili.com/x/web-interface/search/type</div>
+    <div class="ds-note">视频 + 播放/点赞/弹幕, buvid3 cookie 通道</div>
+    <div class="ds-method">通道: <code>session api</code></div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.zhihu.com/api/v4/search/suggest" target="_blank" class="ds-name">知乎 搜索</a>
+    <span class="ds-badge ds-badge-ok">OK</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.zhihu.com/api/v4/search/suggest</div>
+    <div class="ds-note">suggest API 免登录</div>
+    <div class="ds-method">通道: <code>open api</code></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>📰</span><span>行业媒体 & 综合搜索</span><span class="ds-group-count">6 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.robot-china.com/" target="_blank" class="ds-name">中国机器人网</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.robot-china.com/</div>
+    <div class="ds-note">机器人行业垂直资讯</div>
+    <div class="ds-method">采集方式: <code>playwright_headless</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.ofweek.com/" target="_blank" class="ds-name">维科网 OFweek</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.ofweek.com/</div>
+    <div class="ds-note">科技产业资讯，有机器人频道</div>
+    <div class="ds-method">采集方式: <code>playwright_headless</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="http://www.robotsci.com.cn/" target="_blank" class="ds-name">机器人科学网</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">http://www.robotsci.com.cn/</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.baidu.com/s?wd=" target="_blank" class="ds-name">百度搜索</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.baidu.com/s?wd=</div>
+    <div class="ds-note">关键词舆情抓取入口, 已由 sources_playwright 打通</div>
+    <div class="ds-method">采集方式: <code>playwright_baidu_search</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://api.bilibili.com/x/web-interface/search/type" target="_blank" class="ds-name">B站</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://api.bilibili.com/x/web-interface/search/type</div>
+    <div class="ds-note">视频类站外, cookie session 通道, 播放/点赞/弹幕全量</div>
+    <div class="ds-method">采集方式: <code>bilibili_search_api</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.zhihu.com/api/v4/search/suggest" target="_blank" class="ds-name">知乎</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.zhihu.com/api/v4/search/suggest</div>
+    <div class="ds-note">问答类站外, suggest API 免登录</div>
+    <div class="ds-method">采集方式: <code>zhihu_suggest_api</code> · 频率: daily</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>🏛️</span><span>政策 & 论坛</span><span class="ds-group-count">2 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.ncsti.gov.cn/kjdt/ztbd/2024zgclt/index.html" target="_blank" class="ds-name">中关村论坛</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.ncsti.gov.cn/kjdt/ztbd/2024zgclt/index.html</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="http://www.zgkjlt.org.cn/CN/column/item246.shtml" target="_blank" class="ds-name">中国科技论坛</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">http://www.zgkjlt.org.cn/CN/column/item246.shtml</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>📖</span><span>学术库 · 开放通道</span><span class="ds-group-count">12 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://kns.cnki.net" target="_blank" class="ds-name">中国知网 CNKI</a>
+    <span class="ds-badge ds-badge-off">T3 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://kns.cnki.net</div>
+    <div class="ds-note">SPA 严对抗, 触发滑块; 由 OpenAlex + ChinaXiv 覆盖学术面</div>
+    <div class="ds-method">采集方式: <code>playwright_cnki</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://s.wanfangdata.com.cn/paper" target="_blank" class="ds-name">万方数据</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://s.wanfangdata.com.cn/paper</div>
+    <div class="ds-note">playwright 已打通, 3 keyword 34 篇</div>
+    <div class="ds-method">采集方式: <code>playwright_wanfang</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.nstl.gov.cn" target="_blank" class="ds-name">NSTL 国家科技图书文献中心</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.nstl.gov.cn</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" class="ds-name">PubMed</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://pubmed.ncbi.nlm.nih.gov</div>
+    <div class="ds-note">NCBI E-utilities API</div>
+    <div class="ds-method">采集方式: <code>entrez_api</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.base-search.net" target="_blank" class="ds-name">BASE 学术搜索</a>
+    <span class="ds-badge ds-badge-off">T3 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.base-search.net</div>
+    <div class="ds-note">网络层超时, 由 OpenAlex 覆盖</div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://api.openalex.org/works" target="_blank" class="ds-name">OpenAlex (Web of Science 替代)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://api.openalex.org/works</div>
+    <div class="ds-note">开源 API, 250M+ 论文, 完美覆盖 WoS/Scopus 需求, 无 key</div>
+    <div class="ds-method">采集方式: <code>openalex_api</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://api.crossref.org/works" target="_blank" class="ds-name">CrossRef (Scopus 替代)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://api.crossref.org/works</div>
+    <div class="ds-note">开源 API, DOI 元数据全, 按发布日期倒序</div>
+    <div class="ds-method">采集方式: <code>crossref_api</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://api.openalex.org/works" target="_blank" class="ds-name">OpenAlex (Google Scholar 替代)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://api.openalex.org/works</div>
+    <div class="ds-note">Google Scholar 403 已切换到 OpenAlex, 引用数同步返回</div>
+    <div class="ds-method">采集方式: <code>openalex_api</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://arxiv.org" target="_blank" class="ds-name">arXiv</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://arxiv.org</div>
+    <div class="ds-note">标准 API</div>
+    <div class="ds-method">采集方式: <code>arxiv_api</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://doaj.org" target="_blank" class="ds-name">DOAJ 开放期刊目录</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://doaj.org</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>doaj_api</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://api.semanticscholar.org" target="_blank" class="ds-name">Semantic Scholar</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://api.semanticscholar.org</div>
+    <div class="ds-note">免 key 时 429 限流严重, 需 API key 稳定; OpenAlex 已冗余覆盖</div>
+    <div class="ds-method">采集方式: <code>s2_api</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://chinaxiv.org" target="_blank" class="ds-name">ChinaXiv 中科院预印本</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://chinaxiv.org</div>
+    <div class="ds-note">playwright 打通, 中文预印本, 2 keyword 30 篇</div>
+    <div class="ds-method">采集方式: <code>playwright_chinaxiv</code> · 频率: weekly</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>🔒</span><span>学术库 · 订阅/受限</span><span class="ds-group-count">1 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.cqvip.com" target="_blank" class="ds-name">维普资讯</a>
+    <span class="ds-badge ds-badge-off">T4 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.cqvip.com</div>
+    <div class="ds-note">由 OpenAlex + CrossRef 替代</div>
+    <div class="ds-method">采集方式: <code>manual_or_subscribed</code> · 频率: weekly</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>🎓</span><span>会议 · 期刊 · 数据库</span><span class="ds-group-count">7 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="http://www.robocup.org/research" target="_blank" class="ds-name">RoboCup 学术论文索引</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">http://www.robocup.org/research</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://ieeexplore.ieee.org/xpl/conhome/1000002/all-proceedings" target="_blank" class="ds-name">ICRA 会议论文库</a>
+    <span class="ds-badge ds-badge-off">T2 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://ieeexplore.ieee.org/xpl/conhome/1000002/all-proceedings</div>
+    <div class="ds-note">IEEE 订阅墙, 由 arXiv+OpenAlex 中的 ICRA 关键词覆盖</div>
+    <div class="ds-method">采集方式: <code>playwright_headless</code> · 频率: monthly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://ieeexplore.ieee.org/xpl/conhome/1000037/all-proceedings" target="_blank" class="ds-name">IROS 会议论文库</a>
+    <span class="ds-badge ds-badge-off">T2 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://ieeexplore.ieee.org/xpl/conhome/1000037/all-proceedings</div>
+    <div class="ds-note">IEEE 订阅墙</div>
+    <div class="ds-method">采集方式: <code>playwright_headless</code> · 频率: monthly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://www.roboticsproceedings.org" target="_blank" class="ds-name">RSS 机器人会议论文存档</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://www.roboticsproceedings.org</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: monthly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://jcst.ict.ac.cn/en/article/pdf/preview/10.1007/s11390-026-6258-x?year=2026" target="_blank" class="ds-name">JCST 具身智能前沿论文集(中科院计算所)</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://jcst.ict.ac.cn/en/article/pdf/preview/10.1007/s11390-026-6258-x?year=2026</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_pdf</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://lib.xatu.edu.cn/info/1013/9188.htm" target="_blank" class="ds-name">AI-con 人工智能会议数据库</a>
+    <span class="ds-badge ds-badge-ok">T1 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://lib.xatu.edu.cn/info/1013/9188.htm</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://github.com/HCPLab-SYSU/Embodied_AI_Paper_List" target="_blank" class="ds-name">具身智能开源论文清单 (SYSU)</a>
+    <span class="ds-badge ds-badge-ok">T3 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://github.com/HCPLab-SYSU/Embodied_AI_Paper_List</div>
+    <div class="ds-note">GitHub 仓库, README 内容 + commits</div>
+    <div class="ds-method">采集方式: <code>github_api</code> · 频率: weekly</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>🏫</span><span>机构 · 出版物</span><span class="ds-group-count">4 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://airs.cuhk.edu.cn/en/publications" target="_blank" class="ds-name">香港中文大学 AIRS 具身智能出版物</a>
+    <span class="ds-badge ds-badge-off">T1 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://airs.cuhk.edu.cn/en/publications</div>
+    <div class="ds-note">SSL 握手失败, 服务器 TLS 过旧</div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://airs.cuhk.edu.cn/news?page=8" target="_blank" class="ds-name">AIRS 中文新闻 p8</a>
+    <span class="ds-badge ds-badge-off">T1 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://airs.cuhk.edu.cn/news?page=8</div>
+    <div class="ds-note">SSL 握手失败</div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://airs.cuhk.edu.cn/news?page=9" target="_blank" class="ds-name">AIRS 中文新闻 p9</a>
+    <span class="ds-badge ds-badge-off">T1 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://airs.cuhk.edu.cn/news?page=9</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://airs.cuhk.edu.cn/news?page=16" target="_blank" class="ds-name">AIRS 中文新闻 p16</a>
+    <span class="ds-badge ds-badge-off">T1 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://airs.cuhk.edu.cn/news?page=16</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>🗄️</span><span>开源数据集</span><span class="ds-group-count">3 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://hub.baai.ac.cn/view/52081" target="_blank" class="ds-name">具身智能高质量数据集(北通用院1)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://hub.baai.ac.cn/view/52081</div>
+    <div class="ds-note">playwright 打通, 详情页富文本</div>
+    <div class="ds-method">采集方式: <code>playwright_baai_detail</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://hub.baai.ac.cn/view/52385" target="_blank" class="ds-name">16个具身智能数据集(北通用院2)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://hub.baai.ac.cn/view/52385</div>
+    <div class="ds-note">playwright 打通</div>
+    <div class="ds-method">采集方式: <code>playwright_baai_detail</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://post.smzdm.com/p/a70x2po9" target="_blank" class="ds-name">Aperdata.ai 具身智能数据平台</a>
+    <span class="ds-badge ds-badge-off">T1 · 已停用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://post.smzdm.com/p/a70x2po9</div>
+    <div class="ds-note">网络层无法访问</div>
+    <div class="ds-method">采集方式: <code>requests_bs4</code> · 频率: weekly</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-group">
+<div class="ds-group-title"><span>📢</span><span>自媒体 · 微信15号 (搜狗通道)</span><span class="ds-group-count">15 个</span></div>
+<div class="ds-grid">
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=雷锋网" target="_blank" class="ds-name">雷锋网</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=雷锋网</div>
+    <div class="ds-note">搜狗微信破解通道, AI/机器人深度技术解析</div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=智东西" target="_blank" class="ds-name">智东西</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=智东西</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=量子位" target="_blank" class="ds-name">量子位</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=量子位</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=新智元" target="_blank" class="ds-name">新智元</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=新智元</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=硅基观察" target="_blank" class="ds-name">硅基观察 Pro</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=硅基观察</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=PaperWeekly" target="_blank" class="ds-name">PaperWeekly</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=PaperWeekly</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=夕小瑶科技说" target="_blank" class="ds-name">夕小瑶科技说</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=夕小瑶科技说</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=AI前线" target="_blank" class="ds-name">AI 前线 (InfoQ)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=AI前线</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=机器之心" target="_blank" class="ds-name">机器之心</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=机器之心</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=甲子光年" target="_blank" class="ds-name">甲子光年</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=甲子光年</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=科技行者" target="_blank" class="ds-name">科技行者</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=科技行者</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=智能涌现" target="_blank" class="ds-name">36氪 智能涌现</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=智能涌现</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: daily</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=东林钟声" target="_blank" class="ds-name">东林钟声(华科)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=东林钟声</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=穆尧" target="_blank" class="ds-name">穆尧(港大)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=穆尧</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: weekly</div>
+  </div>
+</div>
+<div class="ds-item">
+  <div class="ds-item-head">
+    <a href="https://weixin.sogou.com/weixin?type=2&query=王峰" target="_blank" class="ds-name">王峰(TuSimple)</a>
+    <span class="ds-badge ds-badge-ok">T2 · 已启用</span>
+  </div>
+  <div class="ds-item-body">
+    <div class="ds-url">https://weixin.sogou.com/weixin?type=2&query=王峰</div>
+    <div class="ds-note"></div>
+    <div class="ds-method">采集方式: <code>sogou_wechat</code> · 频率: weekly</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="ds-legend">
+<div class="ds-legend-item"><span class="ds-badge ds-badge-ok">T1/T2 · 已启用</span> 自动化接入</div>
+<div class="ds-legend-item"><span class="ds-badge ds-badge-off">T3/T4 · 已停用</span> 冗余覆盖或反爬对抗</div>
+<div class="ds-legend-item"><span class="ds-badge ds-badge-warn">手工/需登录</span> 需人工介入</div>
+<div class="ds-legend-item">🗓 最后同步: 2026-07-10</div>
+</div>
+</section>
+
 
   </div>
 </div>

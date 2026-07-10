@@ -957,7 +957,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:44,max:100}, stationOut:{score:61,max:100},
     prevStationIn:{score:44,max:100}, prevStationOut:{score:64,max:100},
-    social:{xhs:40,xhsLikes:6718,dy:8,dyLikes:146,scrapedAt:'2026-07-09'},
+    social:{xhs:40,xhsLikes:6718,dy:8,dyLikes:146,scrapedAt:'2026-07-10'},trend:{media:10,acad:8,github:5,total:23,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:17,deal:27,user:21,competition:42},
     indicators:[
       [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
@@ -974,7 +974,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:42,max:100}, stationOut:{score:56,max:100},
     prevStationIn:{score:37,max:100}, prevStationOut:{score:56,max:100},
-    social:{xhs:36,xhsLikes:10881,dy:9,dyLikes:3365,scrapedAt:'2026-07-09'},
+    social:{xhs:36,xhsLikes:10881,dy:9,dyLikes:3365,scrapedAt:'2026-07-10'},trend:{media:10,acad:8,github:5,total:23,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:13,deal:30,user:16,competition:37},
     indicators:[
       [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
@@ -991,7 +991,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:55,max:100}, stationOut:{score:43,max:100},
     prevStationIn:{score:55,max:100}, prevStationOut:{score:49,max:100},
-    social:{xhs:40,xhsLikes:879,dy:8,dyLikes:130,scrapedAt:'2026-07-09'},
+    social:{xhs:40,xhsLikes:879,dy:8,dyLikes:130,scrapedAt:'2026-07-10'},trend:{media:10,acad:10,github:5,total:25,mediaN:0,acadN:4,githubN:0},
     prevScores:{supply:25,deal:25,user:8,competition:45},
     indicators:[
       [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,5,10]
@@ -1008,7 +1008,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:59,max:100}, stationOut:{score:58,max:100},
     prevStationIn:{score:56,max:100}, prevStationOut:{score:64,max:100},
-    social:{xhs:36,xhsLikes:12749,dy:12,dyLikes:54608,scrapedAt:'2026-07-09'},
+    social:{xhs:36,xhsLikes:12749,dy:12,dyLikes:54608,scrapedAt:'2026-07-10'},trend:{media:10,acad:10,github:5,total:25,mediaN:0,acadN:3,githubN:0},
     prevScores:{supply:29,deal:28,user:16,competition:50},
     indicators:[
       [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,10,10,10]
@@ -1025,7 +1025,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
     prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
-    social:{xhs:36,xhsLikes:17402,dy:10,dyLikes:11190,scrapedAt:'2026-07-09'},
+    social:{xhs:36,xhsLikes:17402,dy:10,dyLikes:11190,scrapedAt:'2026-07-10'},trend:{media:10,acad:8,github:5,total:23,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:43,deal:25,user:21,competition:45},
     indicators:[
       [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
@@ -1166,6 +1166,33 @@ function renderTrackCards(){
             <span class="social-label">抖音</span>
             <span class="social-val">${t.social.dy > 0 ? t.social.dy+'视频' : '待采集'}</span>
             <span class="social-likes">${t.social.dyLikes > 0 ? (t.social.dyLikes > 1000 ? (t.social.dyLikes/1000).toFixed(1)+'k' : t.social.dyLikes)+'赞' : ''}</span>
+          </div>
+        </div>
+        ` : ''}
+        ${t.trend ? `
+        <div class="social-row" style="background:#fff7ed;">
+          <div class="social-item" title="行业媒体报道命中数">
+            <span class="social-icon">📰</span>
+            <span class="social-label">媒体</span>
+            <span class="social-val">${t.trend.mediaN}篇</span>
+            <span class="social-likes">${t.trend.media}/10</span>
+          </div>
+          <div class="social-item" title="学术论文命中数(arXiv+S2+DOAJ+机构)">
+            <span class="social-icon">🎓</span>
+            <span class="social-label">学术</span>
+            <span class="social-val">${t.trend.acadN}篇</span>
+            <span class="social-likes">${t.trend.acad}/10</span>
+          </div>
+          <div class="social-item" title="开源清单/GitHub 热度">
+            <span class="social-icon">🐙</span>
+            <span class="social-label">开源</span>
+            <span class="social-val">${t.trend.githubN}项</span>
+            <span class="social-likes">${t.trend.github}/10</span>
+          </div>
+          <div class="social-item" style="font-weight:700;color:#c2410c;" title="AI 趋势热度总分(满分30)">
+            <span class="social-icon">🔥</span>
+            <span class="social-label">趋势热度</span>
+            <span class="social-val">${t.trend.total}/30</span>
           </div>
         </div>
         ` : ''}

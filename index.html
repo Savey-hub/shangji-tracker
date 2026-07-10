@@ -329,6 +329,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .social-label{color:var(--text-secondary);font-size:11px;flex-shrink:0}
 .social-val{color:var(--text-primary);font-weight:600;font-size:12px}
 .social-likes{color:var(--accent);font-size:11px;font-weight:500}
+.trend-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0;padding:10px;background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);border-radius:10px;border:1px solid #fed7aa}
+.trend-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);min-width:0}
+.trend-cell.total{background:linear-gradient(135deg,#f97316 0%,#ea580c 100%);color:#fff}
+.trend-cell-head{display:flex;align-items:center;gap:4px;font-size:11px;color:#78716c;margin-bottom:2px;white-space:nowrap}
+.trend-cell.total .trend-cell-head{color:#fff5eb}
+.trend-cell-icon{font-size:14px;line-height:1}
+.trend-cell-label{font-weight:500}
+.trend-cell-main{font-size:13px;font-weight:700;color:#1c1917;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.trend-cell.total .trend-cell-main{color:#fff;font-size:15px}
+.trend-cell-sub{font-size:10px;color:#a8a29e;margin-top:1px}
+.trend-cell.total .trend-cell-sub{color:#fed7aa}
+@media (max-width:600px){.trend-row{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -1909,29 +1921,26 @@ function renderTrackCards(){
         </div>
         ` : ''}
         ${t.trend ? `
-        <div class="social-row" style="background:#fff7ed;">
-          <div class="social-item" title="行业媒体报道命中数">
-            <span class="social-icon">📰</span>
-            <span class="social-label">媒体</span>
-            <span class="social-val">${t.trend.mediaN}篇</span>
-            <span class="social-likes">${t.trend.media}/10</span>
+        <div class="trend-row">
+          <div class="trend-cell" title="行业媒体报道命中数">
+            <div class="trend-cell-head"><span class="trend-cell-icon">📰</span><span class="trend-cell-label">媒体</span></div>
+            <div class="trend-cell-main">${t.trend.mediaN}篇</div>
+            <div class="trend-cell-sub">${t.trend.media}/10</div>
           </div>
-          <div class="social-item" title="学术论文命中数(arXiv+S2+DOAJ+机构)">
-            <span class="social-icon">🎓</span>
-            <span class="social-label">学术</span>
-            <span class="social-val">${t.trend.acadN}篇</span>
-            <span class="social-likes">${t.trend.acad}/10</span>
+          <div class="trend-cell" title="学术论文命中数(arXiv+S2+DOAJ+机构)">
+            <div class="trend-cell-head"><span class="trend-cell-icon">🎓</span><span class="trend-cell-label">学术</span></div>
+            <div class="trend-cell-main">${t.trend.acadN}篇</div>
+            <div class="trend-cell-sub">${t.trend.acad}/10</div>
           </div>
-          <div class="social-item" title="开源清单/GitHub 热度">
-            <span class="social-icon">🐙</span>
-            <span class="social-label">开源</span>
-            <span class="social-val">${t.trend.githubN}项</span>
-            <span class="social-likes">${t.trend.github}/10</span>
+          <div class="trend-cell" title="开源清单/GitHub 热度">
+            <div class="trend-cell-head"><span class="trend-cell-icon">🐙</span><span class="trend-cell-label">开源</span></div>
+            <div class="trend-cell-main">${t.trend.githubN}项</div>
+            <div class="trend-cell-sub">${t.trend.github}/10</div>
           </div>
-          <div class="social-item" style="font-weight:700;color:#c2410c;" title="AI 趋势热度总分(满分30)">
-            <span class="social-icon">🔥</span>
-            <span class="social-label">趋势热度</span>
-            <span class="social-val">${t.trend.total}/30</span>
+          <div class="trend-cell total" title="AI 趋势热度总分(满分30)">
+            <div class="trend-cell-head"><span class="trend-cell-icon">🔥</span><span class="trend-cell-label">趋势热度</span></div>
+            <div class="trend-cell-main">${t.trend.total}<span style="font-size:11px;opacity:.85">/30</span></div>
+            <div class="trend-cell-sub">综合得分</div>
           </div>
         </div>
         ` : ''}

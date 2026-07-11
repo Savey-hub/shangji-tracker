@@ -329,6 +329,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .social-label{color:var(--text-secondary);font-size:11px;flex-shrink:0}
 .social-val{color:var(--text-primary);font-weight:600;font-size:12px}
 .social-likes{color:var(--accent);font-size:11px;font-weight:500}
+.cia-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0;padding:8px 10px;background:linear-gradient(135deg,#ecfdf5 0%,#d1fae5 100%);border-radius:10px;border:1px solid #a7f3d0}
+.cia-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);min-width:0}
+.cia-label{color:#059669;font-size:10px;font-weight:600}
+.cia-val{color:#065f46;font-weight:700;font-size:13px;white-space:nowrap}
+.cia-yoy{font-size:10px;font-weight:600}
+.cia-yoy.up{color:#059669}
+.cia-yoy.down{color:#dc2626}
+.cia-yoy.flat{color:#9ca3af}
+.cia-head{grid-column:1/-1;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#047857;margin-bottom:-2px}
+.cia-head .cia-badge{background:#059669;color:#fff;font-size:9px;padding:1px 6px;border-radius:6px;font-weight:600}
 .trend-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0;padding:10px;background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);border-radius:10px;border:1px solid #fed7aa}
 .trend-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);min-width:0}
 .trend-cell.total{background:linear-gradient(135deg,#f97316 0%,#ea580c 100%);color:#fff}
@@ -376,7 +386,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <div class="topbar-left">
       <strong style="font-size:1rem;color:var(--primary)">商机孵化实时看板</strong>
       <span class="update-freq-badge"><span class="freq-dot"></span>每周一/四 09:00 自动更新</span>
-      <span class="last-update" id="lastUpdate">最近更新：2026-07-06 09:00</span>
+      <span class="last-update" id="lastUpdate">最近更新：2026-07-11 19:38</span>
     </div>
     <div class="topbar-right">
       <button class="btn btn-outline" onclick="refreshData()">&#8635; 刷新数据</button>
@@ -1706,7 +1716,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:44,max:100}, stationOut:{score:61,max:100},
     prevStationIn:{score:44,max:100}, prevStationOut:{score:64,max:100},
-    social:{xhs:60,xhsLikes:14649,dy:9345,dyLikes:4154,scrapedAt:'2026-07-10'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:60,xhsLikes:14649,dy:9345,dyLikes:4154,scrapedAt:'2026-07-10'},cia:{gmv:null,gmvYoy:0,vol:null,volYoy:0,searchCnt:19561,searchYoy:0.0359,clickCnt:1041,clickUv:315,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:17,deal:27,user:21,competition:42},
     indicators:[
       [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
@@ -1723,7 +1733,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:42,max:100}, stationOut:{score:56,max:100},
     prevStationIn:{score:37,max:100}, prevStationOut:{score:56,max:100},
-    social:{xhs:182,xhsLikes:10638,dy:2112,dyLikes:181678,scrapedAt:'2026-07-10'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:182,xhsLikes:10638,dy:2112,dyLikes:181678,scrapedAt:'2026-07-10'},cia:{gmv:39457.1,gmvYoy:55.4479,vol:57,volYoy:56,searchCnt:413795,searchYoy:0.2318,clickCnt:30697,clickUv:7412,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:13,deal:30,user:16,competition:37},
     indicators:[
       [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
@@ -1740,7 +1750,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:55,max:100}, stationOut:{score:43,max:100},
     prevStationIn:{score:55,max:100}, prevStationOut:{score:49,max:100},
-    social:{xhs:51,xhsLikes:400,dy:796,dyLikes:30201,scrapedAt:'2026-07-10'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:51,xhsLikes:400,dy:796,dyLikes:30201,scrapedAt:'2026-07-10'},cia:{gmv:null,gmvYoy:0,vol:null,volYoy:0,searchCnt:3405,searchYoy:0.2386,clickCnt:210,clickUv:61,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:25,deal:25,user:8,competition:45},
     indicators:[
       [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,5,10]
@@ -1757,7 +1767,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:59,max:100}, stationOut:{score:58,max:100},
     prevStationIn:{score:56,max:100}, prevStationOut:{score:64,max:100},
-    social:{xhs:816,xhsLikes:45420,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-10'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:816,xhsLikes:45420,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-10'},cia:{gmv:6933242.8358,gmvYoy:-0.3819,vol:14018,volYoy:-0.1639,searchCnt:5307065,searchYoy:-0.2697,clickCnt:461849,clickUv:137478,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:29,deal:28,user:16,competition:50},
     indicators:[
       [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,10,10,10]
@@ -1774,7 +1784,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
     prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
-    social:{xhs:40,xhsLikes:11084,dy:1574,dyLikes:12669,scrapedAt:'2026-07-10'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:11084,dy:1574,dyLikes:12669,scrapedAt:'2026-07-10'},cia:{gmv:33376.75,gmvYoy:-0.8904,vol:144,volYoy:-0.9204,searchCnt:96200,searchYoy:-0.7138,clickCnt:6729,clickUv:2087,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:43,deal:25,user:21,competition:45},
     indicators:[
       [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
@@ -1918,6 +1928,42 @@ function renderTrackCards(){
           </div>
         </div>
         ` : ''}
+        ${t.cia ? (function(){
+          const c = t.cia;
+          const fmtMoney = v => v==null ? '—' : (v>=1e8 ? (v/1e8).toFixed(2)+'亿' : v>=1e4 ? (v/1e4).toFixed(1)+'万' : Math.round(v).toLocaleString());
+          const fmtNum = v => v==null ? '—' : (v>=1e4 ? (v/1e4).toFixed(1)+'万' : Math.round(v).toLocaleString());
+          const yoy = v => {
+            if(v==null || v===0) return '<span class="cia-yoy flat">—</span>';
+            const pct = (v*100);
+            const cls = v>0 ? 'up' : 'down';
+            const arrow = v>0 ? '&#9650;' : '&#9660;';
+            return '<span class="cia-yoy '+cls+'">'+arrow+' '+Math.abs(pct).toFixed(1)+'%</span>';
+          };
+          return `
+        <div class="cia-row">
+          <div class="cia-head"><span>🏢 天猫 CIA · 站内权威</span><span class="cia-badge">淘系</span></div>
+          <div class="cia-item" title="按词成交金额(支付口径)及同比">
+            <span class="cia-label">成交金额</span>
+            <span class="cia-val">${fmtMoney(c.gmv)}</span>
+            ${yoy(c.gmvYoy)}
+          </div>
+          <div class="cia-item" title="成交件数及同比">
+            <span class="cia-label">成交件数</span>
+            <span class="cia-val">${fmtNum(c.vol)}</span>
+            ${yoy(c.volYoy)}
+          </div>
+          <div class="cia-item" title="站内搜索次数及同比">
+            <span class="cia-label">搜索次数</span>
+            <span class="cia-val">${fmtNum(c.searchCnt)}</span>
+            ${yoy(c.searchYoy)}
+          </div>
+          <div class="cia-item" title="搜索点击人数(UV)">
+            <span class="cia-label">搜索点击人数</span>
+            <span class="cia-val">${fmtNum(c.clickUv)}</span>
+            <span class="cia-yoy flat">UV</span>
+          </div>
+        </div>`;
+        })() : ''}
         ${t.trend ? `
         <div class="trend-row">
           <div class="trend-cell" title="行业媒体报道命中数">

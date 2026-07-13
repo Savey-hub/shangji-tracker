@@ -329,7 +329,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .social-label{color:var(--text-secondary);font-size:11px;flex-shrink:0}
 .social-val{color:var(--text-primary);font-weight:600;font-size:12px}
 .social-likes{color:var(--accent);font-size:11px;font-weight:500}
-.cia-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0;padding:8px 10px;background:linear-gradient(135deg,#ecfdf5 0%,#d1fae5 100%);border-radius:10px;border:1px solid #a7f3d0}
+.cia-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px 8px;margin:8px 0;padding:8px 10px;background:linear-gradient(135deg,#ecfdf5 0%,#d1fae5 100%);border-radius:10px;border:1px solid #a7f3d0}
 .cia-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);min-width:0}
 .cia-label{color:#059669;font-size:10px;font-weight:600}
 .cia-val{color:#065f46;font-weight:700;font-size:13px;white-space:nowrap}
@@ -339,6 +339,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .cia-yoy.flat{color:#9ca3af}
 .cia-head{grid-column:1/-1;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#047857;margin-bottom:-2px}
 .cia-head .cia-badge{background:#059669;color:#fff;font-size:9px;padding:1px 6px;border-radius:6px;font-weight:600}
+.supply-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px 8px;margin:8px 0;padding:8px 10px;background:linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%);border-radius:10px;border:1px solid #c4b5fd}
+.supply-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);min-width:0}
+.supply-label{color:#7c3aed;font-size:10px;font-weight:600}
+.supply-val{color:#4c1d95;font-weight:700;font-size:13px;white-space:nowrap}
+.supply-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:11px;font-weight:700;color:#5b21b6;padding:0 2px 4px}
+.supply-head .supply-badge{background:#7c3aed;color:#fff;font-size:9px;padding:1px 6px;border-radius:6px;font-weight:600}
 .trend-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0;padding:10px;background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);border-radius:10px;border:1px solid #fed7aa}
 .trend-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);min-width:0}
 .trend-cell.total{background:linear-gradient(135deg,#f97316 0%,#ea580c 100%);color:#fff}
@@ -386,7 +392,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <div class="topbar-left">
       <strong style="font-size:1rem;color:var(--primary)">商机孵化实时看板</strong>
       <span class="update-freq-badge"><span class="freq-dot"></span>每周一/四 09:00 自动更新</span>
-      <span class="last-update" id="lastUpdate">最近更新：2026-07-13 09:31</span>
+      <span class="last-update" id="lastUpdate">最近更新：2026-07-13 20:17</span>
     </div>
     <div class="topbar-right">
       <button class="btn btn-outline" onclick="refreshData()">&#8635; 刷新数据</button>
@@ -885,31 +891,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 
       <!-- Data Gaps -->
       <div class="report-card">
-        <div class="report-card-header">&#128270; 数据缺口（17项待补充指标）</div>
+        <div class="report-card-header">&#128270; 数据缺口（14项待补充指标）</div>
         <div class="report-card-body">
-          <div class="gap-item">
-            <span class="gap-priority high">高</span>
+          <div class="gap-item" style="opacity:.6;text-decoration:line-through">
+            <span class="gap-priority high" style="background:#d1fae5;color:#059669">&#10003;</span>
             <span class="gap-name">支付转化率</span>
-            <span class="gap-impact">影响5个赛道得分准确性</span>
-            <span class="gap-source">需从生意参谋获取</span>
+            <span class="gap-impact">已接入CIA自动获取</span>
+            <span class="gap-source" style="color:#059669">CIA nl2sql (类目级)</span>
+          </div>
+          <div class="gap-item" style="opacity:.6;text-decoration:line-through">
+            <span class="gap-priority high" style="background:#d1fae5;color:#059669">&#10003;</span>
+            <span class="gap-name">搜索热度(搜索人气)</span>
+            <span class="gap-impact">已接入CIA自动获取</span>
+            <span class="gap-source" style="color:#059669">CIA nl2sql (类目+关键词)</span>
+          </div>
+          <div class="gap-item" style="opacity:.6;text-decoration:line-through">
+            <span class="gap-priority high" style="background:#d1fae5;color:#059669">&#10003;</span>
+            <span class="gap-name">收藏加购率</span>
+            <span class="gap-impact">已接入CIA自动获取</span>
+            <span class="gap-source" style="color:#059669">CIA nl2sql (类目级)</span>
           </div>
           <div class="gap-item">
             <span class="gap-priority high">高</span>
-            <span class="gap-name">搜索热度</span>
-            <span class="gap-impact">影响4个赛道用户维度评估</span>
-            <span class="gap-source">需从生意参谋获取</span>
-          </div>
-          <div class="gap-item">
-            <span class="gap-priority medium">中</span>
-            <span class="gap-name">收藏加购率</span>
-            <span class="gap-impact">影响5个赛道用户意向判断</span>
-            <span class="gap-source">需从生意参谋获取</span>
-          </div>
-          <div class="gap-item">
-            <span class="gap-priority low">低</span>
-            <span class="gap-name">新品上架速度</span>
-            <span class="gap-impact">影响1个赛道供给侧评估</span>
-            <span class="gap-source">公开报道跟踪</span>
+            <span class="gap-name">新品上架速度/供给活跃</span>
+            <span class="gap-impact">影响5个赛道供给侧评估</span>
+            <span class="gap-source">抖音商城/京东/拼多多爬取</span>
           </div>
           <div class="gap-item">
             <span class="gap-priority low">低</span>
@@ -1728,7 +1734,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:44,max:100}, stationOut:{score:61,max:100},
     prevStationIn:{score:44,max:100}, prevStationOut:{score:64,max:100},
-    social:{xhs:40,xhsLikes:4550,dy:9345,dyLikes:4154,scrapedAt:'2026-07-13'},cia:{gmv:null,gmvYoy:0,vol:null,volYoy:0,searchCnt:19561,searchYoy:0.0359,clickCnt:1041,clickUv:315,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:4550,dy:9345,dyLikes:4154,scrapedAt:'2026-07-13'},cia:{gmv:919,gmvYoy:0.1502,vol:5,volYoy:4,searchCnt:19612,searchYoy:0.044,clickCnt:969,clickUv:314,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,searchUv:57,searchUvYoy:-0.05,scrapedAt:'2026-07-13'},supply_ext:{jd:57900,pdd:8530,douyin:6210,ali1688:153,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:17,deal:27,user:21,competition:42},
     indicators:[
       [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
@@ -1745,7 +1751,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:42,max:100}, stationOut:{score:56,max:100},
     prevStationIn:{score:37,max:100}, prevStationOut:{score:56,max:100},
-    social:{xhs:40,xhsLikes:13870,dy:2112,dyLikes:181678,scrapedAt:'2026-07-13'},cia:{gmv:39457.1,gmvYoy:55.4479,vol:57,volYoy:56,searchCnt:413795,searchYoy:0.2318,clickCnt:30697,clickUv:7412,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:13870,dy:2112,dyLikes:181678,scrapedAt:'2026-07-13'},cia:{gmv:42684.1,gmvYoy:60.0645,vol:61,volYoy:60,searchCnt:416287,searchYoy:0.2231,clickCnt:30567,clickUv:7308,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,searchUv:355,searchUvYoy:-0.0111,scrapedAt:'2026-07-13'},supply_ext:{jd:1490,pdd:8530,douyin:20900,ali1688:501,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:13,deal:30,user:16,competition:37},
     indicators:[
       [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
@@ -1762,7 +1768,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:55,max:100}, stationOut:{score:49,max:100},
     prevStationIn:{score:55,max:100}, prevStationOut:{score:43,max:100},
-    social:{xhs:36,xhsLikes:0,dy:796,dyLikes:30201,scrapedAt:'2026-07-13'},cia:{gmv:null,gmvYoy:0,vol:null,volYoy:0,searchCnt:3405,searchYoy:0.2386,clickCnt:210,clickUv:61,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:36,xhsLikes:0,dy:796,dyLikes:30201,scrapedAt:'2026-07-13'},cia:{gmv:null,gmvYoy:0,vol:null,volYoy:0,searchCnt:3039,searchYoy:0.1059,clickCnt:153,clickUv:51,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,searchUv:27,searchUvYoy:0.5882,scrapedAt:'2026-07-13'},supply_ext:{jd:1360,pdd:8530,douyin:97900,ali1688:538,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:25,deal:25,user:8,competition:40},
     indicators:[
       [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,8,13]
@@ -1779,7 +1785,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:59,max:100}, stationOut:{score:65,max:100},
     prevStationIn:{score:59,max:100}, prevStationOut:{score:58,max:100},
-    social:{xhs:40,xhsLikes:9756,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-13'},cia:{gmv:6933242.8358,gmvYoy:-0.3819,vol:14018,volYoy:-0.1639,searchCnt:5307065,searchYoy:-0.2697,clickCnt:461849,clickUv:137478,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:9756,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-13'},cia:{gmv:41091363.0741,gmvYoy:-0.0319,vol:60324,volYoy:-0.1673,searchCnt:22704918,searchYoy:-0.1661,clickCnt:2286370,clickUv:601203,convRate:0.0084,convRateYoy:0.0529,cartRate:0.0039,cartRateYoy:-0.1055,searchPop:3089522,searchPopYoy:-0.1397,searchUv:830915,searchUvYoy:-0.1147,scrapedAt:'2026-07-13'},supply_ext:{jd:1280,pdd:8540,douyin:52,ali1688:250,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:32,deal:25,user:16,competition:44},
     indicators:[
       [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,14,10,13]
@@ -1796,7 +1802,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
     prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
-    social:{xhs:36,xhsLikes:7096,dy:1574,dyLikes:12669,scrapedAt:'2026-07-13'},cia:{gmv:33376.75,gmvYoy:-0.8904,vol:144,volYoy:-0.9204,searchCnt:96200,searchYoy:-0.7138,clickCnt:6729,clickUv:2087,scrapedAt:'2026-07-11'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:36,xhsLikes:7096,dy:1574,dyLikes:12669,scrapedAt:'2026-07-13'},cia:{gmv:30290.62,gmvYoy:-0.8968,vol:131,volYoy:-0.9252,searchCnt:2034689,searchYoy:0.1636,clickCnt:190054,clickUv:61625,convRate:0.0121,convRateYoy:-0.196,cartRate:0.0044,cartRateYoy:-0.2324,searchPop:7286458,searchPopYoy:-0.1399,searchUv:89525,searchUvYoy:0.132,scrapedAt:'2026-07-13'},supply_ext:{jd:93200,pdd:8530,douyin:56900,ali1688:2140,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:43,deal:25,user:21,competition:45},
     indicators:[
       [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
@@ -1948,6 +1954,7 @@ function renderTrackCards(){
           const c = t.cia;
           const fmtMoney = v => v==null ? '—' : (v>=1e8 ? (v/1e8).toFixed(2)+'亿' : v>=1e4 ? (v/1e4).toFixed(1)+'万' : Math.round(v).toLocaleString());
           const fmtNum = v => v==null ? '—' : (v>=1e4 ? (v/1e4).toFixed(1)+'万' : Math.round(v).toLocaleString());
+          const fmtPct = v => v==null ? '—' : (v*100).toFixed(2)+'%';
           const yoy = v => {
             if(v==null || v===0) return '<span class="cia-yoy flat">—</span>';
             const pct = (v*100);
@@ -1974,9 +1981,53 @@ function renderTrackCards(){
             ${yoy(c.searchYoy)}
           </div>
           <div class="cia-item" title="搜索点击人数(UV)">
-            <span class="cia-label">搜索点击人数</span>
+            <span class="cia-label">搜索点击UV</span>
             <span class="cia-val">${fmtNum(c.clickUv)}</span>
             <span class="cia-yoy flat">UV</span>
+          </div>
+          <div class="cia-item" title="支付转化率=支付订单数/IPV(类目级)">
+            <span class="cia-label">支付转化率</span>
+            <span class="cia-val">${fmtPct(c.convRate)}</span>
+            ${yoy(c.convRateYoy)}
+          </div>
+          <div class="cia-item" title="收藏加购率=收藏数/IPV(类目级)">
+            <span class="cia-label">收藏加购率</span>
+            <span class="cia-val">${fmtPct(c.cartRate)}</span>
+            ${yoy(c.cartRateYoy)}
+          </div>
+          <div class="cia-item" title="搜索人气=搜索渠道去重买家数(类目级)">
+            <span class="cia-label">搜索人气</span>
+            <span class="cia-val">${fmtNum(c.searchPop)}</span>
+            ${yoy(c.searchPopYoy)}
+          </div>
+          <div class="cia-item" title="按关键词搜索UV(去重人数)">
+            <span class="cia-label">搜索UV(词)</span>
+            <span class="cia-val">${fmtNum(c.searchUv)}</span>
+            ${yoy(c.searchUvYoy)}
+          </div>
+        </div>`;
+        })() : ''}
+        ${t.supply_ext ? (function(){
+          const s = t.supply_ext;
+          const fmtK = v => v==null ? '—' : (v>=10000 ? (v/10000).toFixed(1)+'万' : v>=1000 ? (v/1000).toFixed(1)+'K' : v);
+          return `
+        <div class="supply-row">
+          <div class="supply-head"><span>📦 跨平台供给 · Bing索引</span><span class="supply-badge">供给侧</span></div>
+          <div class="supply-item" title="京东站内该品类商品索引量">
+            <span class="supply-label">京东</span>
+            <span class="supply-val">${fmtK(s.jd)}</span>
+          </div>
+          <div class="supply-item" title="拼多多站内商品索引量">
+            <span class="supply-label">拼多多</span>
+            <span class="supply-val">${fmtK(s.pdd)}</span>
+          </div>
+          <div class="supply-item" title="抖音商城相关商品索引量">
+            <span class="supply-label">抖音商城</span>
+            <span class="supply-val">${fmtK(s.douyin)}</span>
+          </div>
+          <div class="supply-item" title="1688供应商/批发索引量">
+            <span class="supply-label">1688(B2B)</span>
+            <span class="supply-val">${fmtK(s.ali1688)}</span>
           </div>
         </div>`;
         })() : ''}

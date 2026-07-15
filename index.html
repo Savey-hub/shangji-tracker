@@ -1845,7 +1845,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:59,max:100}, stationOut:{score:65,max:100},
     prevStationIn:{score:59,max:100}, prevStationOut:{score:58,max:100},
-    social:{xhs:40,xhsLikes:9756,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-13'},cia:{gmvDaily:5021767.8343,gmvDailyYoy:-0.2836,volDaily:13972.4286,volDailyYoy:-0.8975,onlineItems:1021.8571,onlineItemsYoy:0.6452,activeBrands:230.2857,activeBrandsYoy:0.1085,searchCntDaily:1429468.4286,searchCntDailyYoy:-0.175,searchUvDaily:39355.4286,searchUvDailyYoy:-0.1296,convRate:0.0082,convRateYoy:0.0963,cartRate:0.0041,cartRateYoy:-0.0667,searchPop:760963,searchPopYoy:-0.2188,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',ali1688:250,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:9756,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-13'},cia:{gmvDaily:1227651.7516,gmvDailyYoy:-0.1347,volDaily:686.5714,volDailyYoy:-0.0991,onlineItems:120.1429,onlineItemsYoy:0.8809,activeBrands:23.5714,activeBrandsYoy:0.3095,searchCntDaily:1429468.4286,searchCntDailyYoy:-0.175,searchUvDaily:39355.4286,searchUvDailyYoy:-0.1296,convRate:0.0082,convRateYoy:0.0963,cartRate:null,cartRateYoy:null,searchPop:760963,searchPopYoy:-0.2188,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',ali1688:250,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:32,deal:25,user:16,competition:44},
     indicators:[
       [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,14,10,13]
@@ -1862,7 +1862,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
     prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
-    social:{xhs:36,xhsLikes:7096,dy:1574,dyLikes:12669,scrapedAt:'2026-07-13'},cia:{gmvDaily:5093759.8594,gmvDailyYoy:0.1229,volDaily:25274.1429,volDailyYoy:-0.645,onlineItems:1356.1429,onlineItemsYoy:0.7137,activeBrands:298.7143,activeBrandsYoy:-0.0487,searchCntDaily:1431466.7143,searchCntDailyYoy:0.1199,searchUvDaily:35349.2857,searchUvDailyYoy:0.1645,convRate:0.0122,convRateYoy:-0.1818,cartRate:0.0045,cartRateYoy:-0.2157,searchPop:1890910,searchPopYoy:-0.2345,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',ali1688:2140,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:36,xhsLikes:7096,dy:1574,dyLikes:12669,scrapedAt:'2026-07-13'},cia:{gmvDaily:1241971.5005,gmvDailyYoy:0.3377,volDaily:4578.4286,volDailyYoy:0.5661,onlineItems:232.4286,onlineItemsYoy:1.4117,activeBrands:67.7143,activeBrandsYoy:0.584,searchCntDaily:1431466.7143,searchCntDailyYoy:0.1199,searchUvDaily:35349.2857,searchUvDailyYoy:0.1645,convRate:0.0122,convRateYoy:-0.1818,cartRate:null,cartRateYoy:null,searchPop:2476112,searchPopYoy:-0.1536,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',ali1688:2140,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:43,deal:25,user:21,competition:45},
     indicators:[
       [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
@@ -2060,7 +2060,7 @@ function renderTrackCards(){
             <span class="cia-val">${fmtPct(c.convRate)}</span>
             ${yoy(c.convRateYoy)}
           </div>
-          <div class="cia-item" title="收藏加购率=收藏数/IPV(类目级)">
+          <div class="cia-item" title="收藏加购率=收藏数/IPV(类目级)。注:CIA nl2sql该字段多次取值不稳定(差数十倍)不可校验,暂不展示">
             <span class="cia-label">收藏加购率</span>
             <span class="cia-val">${fmtPct(c.cartRate)}</span>
             ${yoy(c.cartRateYoy)}

@@ -958,6 +958,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .kpi-prog-track{height:8px;background:#e5e7eb;border-radius:5px;overflow:hidden}
 .kpi-prog-fill{height:100%;border-radius:5px;transition:width .6s}
 .kpi-prog-label{display:flex;justify-content:space-between;font-size:.7rem;color:#6b7280;margin-top:5px}
+.kpi-chg-row{display:flex;gap:6px;justify-content:space-between;margin-top:7px}
+.kpi-chg{font-size:.66rem;font-weight:600;padding:2px 6px;border-radius:5px;white-space:nowrap}
+.kpi-chg.up{background:#dcfce7;color:#059669}
+.kpi-chg.down{background:#fee2e2;color:#dc2626}
+.kpi-chg.flat{background:#f1f5f9;color:#64748b}
+.kpi-chg.pend{background:#f1f5f9;color:#94a3b8}
 .kpi-ratio-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:0 16px 16px}
 .kpi-ratio-card{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px;padding:12px 14px}
 .kpi-ratio-card-title{font-size:.76rem;color:#475569;font-weight:600;margin-bottom:8px}
@@ -982,7 +988,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
   </div>
   <div class="kpi-ratio-note">
     <b>控比考核口径</b>：① 商品供给数量控比 淘系VS京东 &gt; 2、淘系VS抖音 &gt; 2；② 支付成交GMV控比 淘系VS京东 &gt; 2、淘系VS抖音 &gt; 2。
-    京东/抖音数据待手动登录采集校准后自动填入，当前标记为「待校准」。
+    抖音供给/GMV来自蝉妈妈（AI锁/摄像头为日均动销+日均GMV，机器人赛道为在售商品数）；京东商品数与GMV被平台屏蔽、网页端无法免费获取，标记「需付费API」。周环比＝近7天vs上7天、月环比＝近30天vs前30天，均由天猫CIA显式日期窗口自算。
   </div>
   <div id="kpiBoard"></div>
 </section>
@@ -1766,14 +1772,11 @@ const INDICATOR_DEFS = [
   ]},
   { dim:'成交', items:[
     {name:'GMV规模',max:8,source:'洛图/OFweek年报'},
-    {name:'GMV增速',max:7,source:'洛图/上市公司财报'},
-    {name:'支付转化率',max:5,source:'待补充(需生意参谋)'},
-    {name:'客单价趋势',max:5,source:'洛图均价报告'}
+    {name:'GMV增速',max:7,source:'洛图/上市公司财报'}
   ]},
   { dim:'用户', items:[
     {name:'搜索热度',max:8,source:'待补充(需生意参谋)'},
     {name:'访客规模',max:7,source:'推算(基于销量)'},
-    {name:'收藏加购率',max:5,source:'待补充(需生意参谋)'},
     {name:'复购率',max:5,source:'行业估算'}
   ]},
   { dim:'竞争', items:[
@@ -1797,10 +1800,10 @@ let tracks = [
     social:{xhs:40,xhsLikes:4550,dy:9345,dyLikes:4154,scrapedAt:'2026-07-13'},cia:{gmvDaily:112432.3258,gmvDailyYoy:-0.0391,volDaily:257,volDailyYoy:0.6253,onlineItems:39.7143,onlineItemsYoy:0.7457,activeBrands:20.5714,activeBrandsYoy:0.5526,searchCntDaily:37460.2857,searchCntDailyYoy:-0.0956,searchUvDaily:1131.2857,searchUvDailyYoy:-0.1243,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'2500~5000',douyinMall:97,douyinMallCapped:false,ali1688:153,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:17,deal:27,user:21,competition:42},
     indicators:[
-      [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
+      [6,0,5,6],[10,12],[0,18,3],[7,18,5,10]
     ],
     prevIndicators:[
-      [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
+      [6,0,5,6],[10,12],[0,18,3],[7,18,5,10]
     ],
     stage:'成长期',
     keyInsight:'工信部AI+制造专项支持具身智能; 4G移动监控户外占比48.4%'
@@ -1814,10 +1817,10 @@ let tracks = [
     social:{xhs:40,xhsLikes:13870,dy:2112,dyLikes:181678,scrapedAt:'2026-07-13'},cia:{gmvDaily:34956.8686,gmvDailyYoy:6.5295,volDaily:49.2857,volDailyYoy:4.8849,onlineItems:7.5714,onlineItemsYoy:0.6825,activeBrands:6.2857,activeBrandsYoy:0.3233,searchCntDaily:81022.2857,searchCntDailyYoy:1.0896,searchUvDaily:1716.2857,searchUvDailyYoy:1.3068,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'2500~5000',douyinMall:716,douyinMallCapped:false,ali1688:501,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:13,deal:30,user:16,competition:37},
     indicators:[
-      [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
+      [3,3,3,6],[8,12],[3,10,3],[4,18,5,10]
     ],
     prevIndicators:[
-      [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
+      [3,3,3,6],[8,12],[3,10,3],[4,18,5,10]
     ],
     stage:'孕化期',
     keyInsight:'Loona Deskmate CES 2026发布; Reachy Mini 5天售$100万+; 口碑两极分化'
@@ -1831,10 +1834,10 @@ let tracks = [
     social:{xhs:36,xhsLikes:0,dy:796,dyLikes:30201,scrapedAt:'2026-07-13'},cia:{gmvDaily:3699.5886,gmvDailyYoy:-0.0903,volDaily:2.5714,volDailyYoy:0.5429,onlineItems:2.2857,onlineItemsYoy:0.7143,activeBrands:2,activeBrandsYoy:0.5,searchCntDaily:2754.2857,searchCntDailyYoy:0.1761,searchUvDaily:40.5714,searchUvDailyYoy:0.0712,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'0~250',douyinMall:89,douyinMallCapped:false,ali1688:538,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:25,deal:25,user:8,competition:40},
     indicators:[
-      [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,8,13]
+      [6,6,5,8],[13,12],[3,5,0],[7,18,8,13]
     ],
     prevIndicators:[
-      [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,5,10]
+      [6,6,5,8],[13,12],[3,5,0],[7,18,5,10]
     ],
     stage:'成长期',
     keyInsight:'亿嘉和7/9涨停+申昊20亿转型算力; 码力机器人千万融资; 国网68亿集采; 工信部标准公示'
@@ -1845,13 +1848,13 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:59,max:100}, stationOut:{score:65,max:100},
     prevStationIn:{score:59,max:100}, prevStationOut:{score:58,max:100},
-    social:{xhs:40,xhsLikes:9756,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-13'},cia:{gmvDaily:1227651.7516,gmvDailyYoy:-0.1347,volDaily:686.5714,volDailyYoy:-0.0991,onlineItems:120.1429,onlineItemsYoy:0.8809,activeBrands:23.5714,activeBrandsYoy:0.3095,searchCntDaily:1429468.4286,searchCntDailyYoy:-0.175,searchUvDaily:39355.4286,searchUvDailyYoy:-0.1296,convRate:0.0082,convRateYoy:0.0963,cartRate:null,cartRateYoy:null,searchPop:760963,searchPopYoy:-0.2188,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',douyinMall:2000,douyinMallCapped:true,ali1688:250,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:9756,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-13'},cia:{gmvDaily:1227651.7516,gmvDailyYoy:-0.1347,volDaily:686.5714,volDailyYoy:-0.0991,onlineItems:120.1429,onlineItemsYoy:0.8809,activeBrands:23.5714,activeBrandsYoy:0.3095,searchCntDaily:1429468.4286,searchCntDailyYoy:-0.175,searchUvDaily:39355.4286,searchUvDailyYoy:-0.1296,convRate:0.0082,convRateYoy:0.0963,cartRate:null,cartRateYoy:null,searchPop:760963,searchPopYoy:-0.2188,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',douyinMall:2000,douyinMallCapped:true,douyinGmvDaily:558238,douyinBrandsDaily:30,douyinProductsDaily:197,ali1688:250,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:32,deal:25,user:16,competition:44},
     indicators:[
-      [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,14,10,13]
+      [10,6,10,6],[13,7],[0,13,3],[14,14,10,13]
     ],
     prevIndicators:[
-      [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,10,10,10]
+      [10,6,10,6],[13,7],[0,13,3],[14,10,10,10]
     ],
     stage:'成长期',
     keyInsight:'德施曼5月超越小米登顶线上第一; TOP3占过半份额; 猫眼大屏锁占比57.7%; 内容电商增速>60%'
@@ -1862,13 +1865,13 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
     prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
-    social:{xhs:36,xhsLikes:7096,dy:1574,dyLikes:12669,scrapedAt:'2026-07-13'},cia:{gmvDaily:1241971.5005,gmvDailyYoy:0.3377,volDaily:4578.4286,volDailyYoy:0.5661,onlineItems:232.4286,onlineItemsYoy:1.4117,activeBrands:67.7143,activeBrandsYoy:0.584,searchCntDaily:1431466.7143,searchCntDailyYoy:0.1199,searchUvDaily:35349.2857,searchUvDailyYoy:0.1645,convRate:0.0122,convRateYoy:-0.1818,cartRate:null,cartRateYoy:null,searchPop:2476112,searchPopYoy:-0.1536,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',douyinMall:2000,douyinMallCapped:true,ali1688:2140,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:36,xhsLikes:7096,dy:1574,dyLikes:12669,scrapedAt:'2026-07-13'},cia:{gmvDaily:9459153.5513,gmvDailyYoy:0.3972,volDaily:48315,volDailyYoy:0.4079,onlineItems:3314.8571,onlineItemsYoy:0.5657,activeBrands:418.4286,activeBrandsYoy:0.5292,searchCntDaily:1431466.7143,searchCntDailyYoy:0.1199,searchUvDaily:35349.2857,searchUvDailyYoy:0.1645,convRate:0.0122,convRateYoy:-0.1818,cartRate:null,cartRateYoy:null,searchPop:2476112,searchPopYoy:-0.1536,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',douyinMall:2000,douyinMallCapped:true,douyinGmvDaily:907726,douyinBrandsDaily:53,douyinProductsDaily:404,ali1688:2140,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:43,deal:25,user:21,competition:45},
     indicators:[
-      [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
+      [13,11,13,6],[13,7],[0,18,3],[14,5,10,13]
     ],
     prevIndicators:[
-      [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
+      [13,11,13,6],[13,7],[0,18,3],[14,5,10,13]
     ],
     stage:'成长期',
     keyInsight:'Q1线上1316万台; 8MP成主流(36.9%); 萤石十余款AI新品发布'
@@ -2055,16 +2058,6 @@ function renderTrackCards(){
             <span class="cia-val">${fmtNum(c.searchUvDaily)}</span>
             ${yoy(c.searchUvDailyYoy)}
           </div>
-          <div class="cia-item" title="成交转化率=支付订单数/IPV(类目级)">
-            <span class="cia-label">支付转化率</span>
-            <span class="cia-val">${fmtPct(c.convRate)}</span>
-            ${yoy(c.convRateYoy)}
-          </div>
-          <div class="cia-item" title="收藏加购率=收藏数/IPV(类目级)。注:CIA nl2sql该字段多次取值不稳定(差数十倍)不可校验,暂不展示">
-            <span class="cia-label">收藏加购率</span>
-            <span class="cia-val">${fmtPct(c.cartRate)}</span>
-            ${yoy(c.cartRateYoy)}
-          </div>
         </div>`;
         })() : ''}
         ${t.supply_ext ? (function(){
@@ -2074,16 +2067,11 @@ function renderTrackCards(){
           const fmtItem = v => v==null ? '—' : (v>=100 ? Math.round(v).toLocaleString() : (Math.round(v*10)/10));
           return `
         <div class="supply-row">
-          <div class="supply-head"><span>📦 跨平台供给·动销对比（口径已对齐真实来源）</span><span class="supply-badge">供给侧</span></div>
+          <div class="supply-head"><span>📦 跨平台供给·在售商品数对比（口径已对齐真实来源）</span><span class="supply-badge">供给侧</span></div>
           <div class="supply-item real" title="淘系近7天日均在线商品数(天猫CIA权威·正常在线状态)">
             <span class="supply-label">淘系·在线商品</span>
             <span class="supply-val">${fmtItem(c.onlineItems)}</span>
             <span class="supply-tag ok">CIA权威</span>
-          </div>
-          <div class="supply-item real" title="抖音全域近30天动销销量档位(蝉妈妈官方数据·可校验)">
-            <span class="supply-label">抖音·动销销量</span>
-            <span class="supply-val" style="font-size:15px">${s.douyinBand||'—'}</span>
-            <span class="supply-tag ok">蝉妈妈</span>
           </div>
           <div class="supply-item real" title="抖音商城在售商品数(蝉妈妈选品库·可校验)${s.douyinMallCapped?' 注:大类目平台封顶2000,此为真实值下限':''}">
             <span class="supply-label">抖音商城·在售</span>
@@ -2564,15 +2552,33 @@ const KPI_TARGETS = {
   '移动监控机器人':          {items:500,  brands:50,  gmvDaily:200000},
   '桌面机器人':              {items:300,  brands:30,  gmvDaily:50000},
   '安防/巡逻/巡检/安检机器人':{items:200,  brands:20,  gmvDaily:30000},
-  'AI智能锁':                {items:1000, brands:100, gmvDaily:500000},
-  'AI监控摄像头':            {items:10000,brands:1000,gmvDaily:2000000},
+  'AI智能锁':                {items:500,  brands:50,  gmvDaily:500000},
+  'AI监控摄像头':            {items:3000, brands:200, gmvDaily:2000000},
+};
+// 周环比/月环比 — 天猫CIA显式日期窗口自算(近7天 vs 上7天; 近30天 vs 前30天), 数据源可校验
+// wow/mom.{gmv,items,brands} 为相对变化(小数)
+const WOW_MOM = {
+  '移动监控机器人':          {wow:{gmv:0.2701,items:0.1032,brands:0.152},  mom:{gmv:-0.2182,items:-0.0378,brands:-0.0381}},
+  '桌面机器人':              {wow:{gmv:0.0632,items:-0.3375,brands:-0.3973},mom:{gmv:-0.2803,items:-0.12,brands:-0.1838}},
+  '安防/巡逻/巡检/安检机器人':{wow:{gmv:0.9411,items:0.039,brands:0.25},    mom:{gmv:0.2262,items:-0.04,brands:0.1935}},
+  'AI智能锁':                {wow:{gmv:0.4787,items:0.0294,brands:-0.0179}, mom:{gmv:-0.4737,items:-0.0843,brands:0.0212}},
+  'AI监控摄像头':            {wow:{gmv:-0.0103,items:-0.0046,brands:-0.0324},mom:{gmv:-0.0363,items:0.0389,brands:-0.0144}},
 };
 function renderKpiBoard(){
   const board = document.getElementById('kpiBoard');
   if(!board) return;
   const fmtMoney = v => v==null ? '—' : (v>=1e8 ? (v/1e8).toFixed(2)+'亿' : v>=1e4 ? (v/1e4).toFixed(1)+'万' : Math.round(v).toLocaleString());
   const fmtNum = v => v==null ? '—' : (v>=1e4 ? (v/1e4).toFixed(1)+'万' : v>=100 ? Math.round(v).toLocaleString() : (Math.round(v*10)/10));
-  const progCard = (title, cur, tgt, fmt) => {
+  // 环比徽章: 正=绿↑, 负=红↓, 零=灰
+  const chgBadge = (label, v) => {
+    if(v==null) return `<span class="kpi-chg pend">${label} —</span>`;
+    const pct = (v*100);
+    const cls = v>0.0005 ? 'up' : v<-0.0005 ? 'down' : 'flat';
+    const arrow = v>0.0005 ? '▲' : v<-0.0005 ? '▼' : '–';
+    const sign = v>0 ? '+' : '';
+    return `<span class="kpi-chg ${cls}">${label} ${arrow}${sign}${pct.toFixed(1)}%</span>`;
+  };
+  const progCard = (title, cur, tgt, fmt, chg) => {
     const pct = (cur!=null && tgt>0) ? Math.min(100, cur/tgt*100) : 0;
     const done = cur!=null && cur>=tgt;
     const color = done ? '#059669' : pct>=50 ? '#d97706' : '#dc2626';
@@ -2585,9 +2591,10 @@ function renderKpiBoard(){
         </div>
         <div class="kpi-prog-track"><div class="kpi-prog-fill" style="width:${pct}%;background:${color}"></div></div>
         <div class="kpi-prog-label"><span>${done?'✅ 已达成':'达成率 '+pct.toFixed(0)+'%'}</span><span>2027.3.31</span></div>
+        ${chg ? `<div class="kpi-chg-row">${chgBadge('周环比', chg.wow)}${chgBadge('月环比', chg.mom)}</div>` : ''}
       </div>`;
   };
-  const ratioCard = (title, taoVal, cmpVal, fmt, naText) => {
+  const ratioCard = (title, taoVal, cmpVal, fmt, naText, cmpLabel, chg) => {
     // cmpVal null => 无对比值：若给了 naText 显示真实原因，否则待校准
     let jdCls='pend', jdTxt=naText||'待校准', jdRatio='—';
     if(cmpVal!=null && cmpVal>0){
@@ -2598,16 +2605,28 @@ function renderKpiBoard(){
     } else if(naText){
       jdCls='na';
     }
+    // 对比侧数值单元：有真实竞对值则显示,否则显示原因文案
+    const cmpCell = (cmpVal!=null && cmpVal>0)
+      ? `<div class="kpi-ratio-item"><div class="kpi-ratio-vs">${cmpLabel||'竞对'}</div><div class="kpi-ratio-val" style="color:#111">${fmt(cmpVal)}</div></div>`
+      : `<div class="kpi-ratio-item"><div class="kpi-ratio-vs">${cmpLabel||'竞对'}</div><div class="kpi-ratio-val na" style="font-size:12px">${naText||'待校准'}</div></div>`;
     return `<div class="kpi-ratio-card"><div class="kpi-ratio-card-title">${title}</div>
       <div class="kpi-ratio-pair">
         <div class="kpi-ratio-item"><div class="kpi-ratio-vs">淘系</div><div class="kpi-ratio-val" style="color:#111">${fmt(taoVal)}</div></div>
+        ${cmpCell}
         <div class="kpi-ratio-item"><div class="kpi-ratio-vs">控比结果</div><div class="kpi-ratio-val ${jdCls}">${jdRatio}</div><div class="kpi-ratio-target">目标 &gt;2 · ${jdTxt}</div></div>
-      </div></div>`;
+      </div>
+      ${chg ? `<div class="kpi-chg-row" style="justify-content:flex-start;padding:6px 0 0"><span style="font-size:11px;color:#94a3b8;margin-right:6px">淘系趋势</span>${chgBadge('周', chg.wow)}${chgBadge('月', chg.mom)}</div>` : ''}
+      </div>`;
   };
   board.innerHTML = tracks.map(t => {
     const tgt = KPI_TARGETS[t.name];
     const c = t.cia || {};
     const s = t.supply_ext || {};
+    const wm = WOW_MOM[t.name] || {};
+    const wmWow = wm.wow || {}, wmMom = wm.mom || {};
+    const chgItems = {wow:wmWow.items, mom:wmMom.items};
+    const chgBrands = {wow:wmWow.brands, mom:wmMom.brands};
+    const chgGmv = {wow:wmWow.gmv, mom:wmMom.gmv};
     if(!tgt) return '';
     // 达成计数
     let done=0, total=3;
@@ -2616,6 +2635,13 @@ function renderKpiBoard(){
     if(c.gmvDaily!=null && c.gmvDaily>=tgt.gmvDaily) done++;
     const tagCls = done>=3?'ok':done>=1?'mid':'low';
     const tagTxt = done>=3?'全部达成':done+'/'+total+' 达成';
+    // 抖音真实供给/GMV(蝉妈妈):供给数量对比优先用日均动销(AI锁/摄像头),机器人赛道回退用在售商品数(带≥标注);GMV仅AI锁/摄像头有
+    const dyProdDaily = s.douyinProductsDaily;   // 抖音日均动销商品数(brandRank)
+    const dyMall = s.douyinMall;                 // 抖音商城在售商品数(选品库,大类目封顶2000)
+    const dySupply = dyProdDaily!=null ? dyProdDaily : dyMall;
+    const dySupplyLabel = dyProdDaily!=null ? '抖音(日均动销)'
+      : (s.douyinMallCapped ? '抖音在售(封顶≥)' : '抖音(在售)');
+    const dyGmv  = s.douyinGmvDaily;             // 抖音日均GMV
     return `
     <div class="kpi-track-block">
       <div class="kpi-track-head">
@@ -2623,15 +2649,15 @@ function renderKpiBoard(){
         <span class="kpi-track-tag ${tagCls}">${tagTxt}</span>
       </div>
       <div class="kpi-goal-grid">
-        ${progCard('淘系在线商品数(日均)', c.onlineItems, tgt.items, fmtNum)}
-        ${progCard('淘系品牌供给数(日均动销)', c.activeBrands, tgt.brands, fmtNum)}
-        ${progCard('核心品类锁支付GMV(日均)', c.gmvDaily, tgt.gmvDaily, fmtMoney)}
+        ${progCard('淘系在线商品数(日均)', c.onlineItems, tgt.items, fmtNum, chgItems)}
+        ${progCard('淘系品牌供给数(日均动销)', c.activeBrands, tgt.brands, fmtNum, chgBrands)}
+        ${progCard('核心品类锁支付GMV(日均)', c.gmvDaily, tgt.gmvDaily, fmtMoney, chgGmv)}
       </div>
       <div class="kpi-ratio-row">
-        ${ratioCard('① 商品供给数量控比 · 淘系VS京东', c.onlineItems, null, fmtNum, '京东屏蔽·需付费API')}
-        ${ratioCard('① 商品供给数量控比 · 淘系VS抖音', c.onlineItems, null, fmtNum, '抖音仅动销档位·不可比')}
-        ${ratioCard('② 支付成交GMV控比 · 淘系VS京东', c.gmvDaily, null, fmtMoney, '京东屏蔽·需付费API')}
-        ${ratioCard('② 支付成交GMV控比 · 淘系VS抖音', c.gmvDaily, null, fmtMoney, '抖音仅动销档位·不可比')}
+        ${ratioCard('① 商品供给控比 · 淘系VS京东', c.onlineItems, null, fmtNum, '京东屏蔽·需付费API', '京东', chgItems)}
+        ${ratioCard('① 商品供给控比 · 淘系VS抖音', c.onlineItems, dySupply, fmtNum, '抖音无供给数据', dySupplyLabel, chgItems)}
+        ${ratioCard('② 支付GMV控比 · 淘系VS京东', c.gmvDaily, null, fmtMoney, '京东屏蔽·需付费API', '京东', chgGmv)}
+        ${ratioCard('② 支付GMV控比 · 淘系VS抖音', c.gmvDaily, dyGmv, fmtMoney, '抖音无GMV数据', '抖音(蝉妈妈)', chgGmv)}
       </div>
     </div>`;
   }).join('');

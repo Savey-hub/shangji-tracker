@@ -339,10 +339,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .cia-yoy.flat{color:#9ca3af}
 .cia-head{grid-column:1/-1;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#047857;margin-bottom:-2px}
 .cia-head .cia-badge{background:#059669;color:#fff;font-size:9px;padding:1px 6px;border-radius:6px;font-weight:600}
-.supply-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px 8px;margin:8px 0;padding:8px 10px;background:linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%);border-radius:10px;border:1px solid #c4b5fd}
+.supply-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px 8px;margin:8px 0;padding:8px 10px;background:linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%);border-radius:10px;border:1px solid #c4b5fd}
 .supply-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px;background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);min-width:0}
+.supply-item.real{background:#f5f3ff;border:1.5px solid #7c3aed;box-shadow:0 2px 6px rgba(124,58,237,.18)}
 .supply-label{color:#7c3aed;font-size:10px;font-weight:600}
 .supply-val{color:#4c1d95;font-weight:700;font-size:13px;white-space:nowrap}
+.supply-tag{font-size:8px;font-weight:700;padding:0 5px;border-radius:5px;line-height:1.4}
+.supply-tag.ok{background:#d1fae5;color:#059669}
+.supply-tag.warn{background:#fef3c7;color:#d97706}
 .supply-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:11px;font-weight:700;color:#5b21b6;padding:0 2px 4px}
 .supply-head .supply-badge{background:#7c3aed;color:#fff;font-size:9px;padding:1px 6px;border-radius:6px;font-weight:600}
 .trend-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0;padding:10px;background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);border-radius:10px;border:1px solid #fed7aa}
@@ -377,6 +381,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <a onclick="scrollToSection('timeline')"><span class="icon">&#128197;</span>阶段时间线</a>
     <a onclick="scrollToSection('history')"><span class="icon">&#128221;</span>更新日志</a>
     <a onclick="scrollToSection('weekly-report')"><span class="icon">&#128203;</span>周报摘要</a>
+    <a onclick="scrollToSection('kpi-goals')"><span class="icon">&#127919;</span>目标考核</a>
     <a onclick="scrollToSection('data-sources')"><span class="icon">&#128279;</span>数据源指引</a>
   </nav>
   <div class="sidebar-footer">
@@ -392,7 +397,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <div class="topbar-left">
       <strong style="font-size:1rem;color:var(--primary)">商机孵化实时看板</strong>
       <span class="update-freq-badge"><span class="freq-dot"></span>每周一/四 09:00 自动更新</span>
-      <span class="last-update" id="lastUpdate">最近更新：2026-07-13 20:17</span>
+      <span class="last-update" id="lastUpdate">最近更新：2026-07-15 09:20</span>
     </div>
     <div class="topbar-right">
       <button class="btn btn-outline" onclick="refreshData()">&#8635; 刷新数据</button>
@@ -926,6 +931,59 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
         </div>
       </div>
     </section>
+
+<!-- ===== 自我目标设置与考核 ===== -->
+<style>
+.kpi-goal-section{margin:24px 0;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.kpi-goal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-bottom:12px;border-bottom:2px solid #2563eb}
+.kpi-goal-title{font-size:1.15rem;font-weight:700;color:#111}
+.kpi-goal-desc{font-size:.8rem;color:#666;margin-top:4px}
+.kpi-goal-badge{background:#2563eb;color:#fff;font-size:.72rem;padding:4px 12px;border-radius:8px;font-weight:600}
+.kpi-ratio-note{font-size:.78rem;color:#4b5563;background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 8px 8px 0;padding:10px 14px;margin:16px 0}
+.kpi-ratio-note b{color:#1d4ed8}
+.kpi-track-block{margin-bottom:22px;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
+.kpi-track-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(90deg,#eff6ff,#fff);border-left:5px solid #2563eb}
+.kpi-track-name{font-size:1rem;font-weight:700;color:#111}
+.kpi-track-tag{font-size:.7rem;padding:2px 8px;border-radius:6px;font-weight:600}
+.kpi-track-tag.ok{background:#d1fae5;color:#059669}
+.kpi-track-tag.mid{background:#fef3c7;color:#d97706}
+.kpi-track-tag.low{background:#fee2e2;color:#dc2626}
+.kpi-goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px}
+.kpi-goal-card{background:#fafafa;border:1px solid #eee;border-radius:10px;padding:14px}
+.kpi-goal-card-title{font-size:.78rem;color:#6b7280;font-weight:600;margin-bottom:8px}
+.kpi-goal-nums{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
+.kpi-goal-cur{font-size:1.35rem;font-weight:800;color:#111}
+.kpi-goal-tgt{font-size:.82rem;color:#9ca3af}
+.kpi-prog-track{height:8px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.kpi-prog-fill{height:100%;border-radius:5px;transition:width .6s}
+.kpi-prog-label{display:flex;justify-content:space-between;font-size:.7rem;color:#6b7280;margin-top:5px}
+.kpi-ratio-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:0 16px 16px}
+.kpi-ratio-card{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px;padding:12px 14px}
+.kpi-ratio-card-title{font-size:.76rem;color:#475569;font-weight:600;margin-bottom:8px}
+.kpi-ratio-pair{display:flex;gap:16px}
+.kpi-ratio-item{flex:1}
+.kpi-ratio-vs{font-size:.68rem;color:#94a3b8}
+.kpi-ratio-val{font-size:1.05rem;font-weight:800;margin:2px 0}
+.kpi-ratio-val.pass{color:#059669}
+.kpi-ratio-val.fail{color:#dc2626}
+.kpi-ratio-val.pend{color:#d97706}
+.kpi-ratio-target{font-size:.66rem;color:#94a3b8}
+@media(max-width:900px){.kpi-goal-grid{grid-template-columns:1fr}.kpi-ratio-row{grid-template-columns:1fr}}
+</style>
+<section id="kpi-goals" class="kpi-goal-section animate-in">
+  <div class="kpi-goal-head">
+    <div>
+      <div class="kpi-goal-title">🎯 自我目标设置与考核</div>
+      <div class="kpi-goal-desc">2027.3.31 达成目标 · 全部日均口径(正常在线状态) · 淘系数据来自天猫CIA权威源</div>
+    </div>
+    <span class="kpi-goal-badge">考核看板</span>
+  </div>
+  <div class="kpi-ratio-note">
+    <b>控比考核口径</b>：① 商品供给数量控比 淘系VS京东 &gt; 2、淘系VS抖音 &gt; 2；② 支付成交GMV控比 淘系VS京东 &gt; 2、淘系VS抖音 &gt; 2。
+    京东/抖音数据待手动登录采集校准后自动填入，当前标记为「待校准」。
+  </div>
+  <div id="kpiBoard"></div>
+</section>
 
 <!-- ===== Data Source Directory ===== -->
 <style>
@@ -1734,7 +1792,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:44,max:100}, stationOut:{score:61,max:100},
     prevStationIn:{score:44,max:100}, prevStationOut:{score:64,max:100},
-    social:{xhs:40,xhsLikes:4550,dy:9345,dyLikes:4154,scrapedAt:'2026-07-13'},cia:{gmv:919,gmvYoy:0.1502,vol:5,volYoy:4,searchCnt:19612,searchYoy:0.044,clickCnt:969,clickUv:314,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,searchUv:57,searchUvYoy:-0.05,scrapedAt:'2026-07-13'},supply_ext:{jd:57900,pdd:8530,douyin:6210,ali1688:153,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:4550,dy:9345,dyLikes:4154,scrapedAt:'2026-07-13'},cia:{gmvDaily:125931.4487,gmvDailyYoy:-0.0468,volDaily:239.4,volDailyYoy:0.3307,onlineItems:36.1667,onlineItemsYoy:0.7436,activeBrands:18.5,activeBrandsYoy:0.6967,searchCntDaily:35828,searchCntDailyYoy:-0.1019,searchUvDaily:1027.2333,searchUvDailyYoy:-0.1701,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{jd:57900,pdd:8530,douyin:6210,ali1688:153,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:17,deal:27,user:21,competition:42},
     indicators:[
       [6,0,5,6],[10,12,0,5],[0,18,0,3],[7,18,5,10]
@@ -1751,7 +1809,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:42,max:100}, stationOut:{score:56,max:100},
     prevStationIn:{score:37,max:100}, prevStationOut:{score:56,max:100},
-    social:{xhs:40,xhsLikes:13870,dy:2112,dyLikes:181678,scrapedAt:'2026-07-13'},cia:{gmv:42684.1,gmvYoy:60.0645,vol:61,volYoy:60,searchCnt:416287,searchYoy:0.2231,clickCnt:30567,clickUv:7308,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,searchUv:355,searchUvYoy:-0.0111,scrapedAt:'2026-07-13'},supply_ext:{jd:1490,pdd:8530,douyin:20900,ali1688:501,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:13870,dy:2112,dyLikes:181678,scrapedAt:'2026-07-13'},cia:{gmvDaily:85785.4037,gmvDailyYoy:7.684,volDaily:260.8667,volDailyYoy:2.2648,onlineItems:20.4,onlineItemsYoy:2.2767,activeBrands:18.1667,activeBrandsYoy:0.6467,searchCntDaily:15953.3,searchCntDailyYoy:0.3402,searchUvDaily:329.5,searchUvDailyYoy:0.3298,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{jd:1490,pdd:8530,douyin:20900,ali1688:501,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:13,deal:30,user:16,competition:37},
     indicators:[
       [3,3,3,6],[8,12,0,10],[3,10,0,3],[4,18,5,10]
@@ -1768,7 +1826,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:55,max:100}, stationOut:{score:49,max:100},
     prevStationIn:{score:55,max:100}, prevStationOut:{score:43,max:100},
-    social:{xhs:36,xhsLikes:0,dy:796,dyLikes:30201,scrapedAt:'2026-07-13'},cia:{gmv:null,gmvYoy:0,vol:null,volYoy:0,searchCnt:3039,searchYoy:0.1059,clickCnt:153,clickUv:51,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,searchUv:27,searchUvYoy:0.5882,scrapedAt:'2026-07-13'},supply_ext:{jd:1360,pdd:8530,douyin:97900,ali1688:538,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:36,xhsLikes:0,dy:796,dyLikes:30201,scrapedAt:'2026-07-13'},cia:{gmvDaily:1186.4545,gmvDailyYoy:-0.3525,volDaily:1.5455,volDailyYoy:0.4266,onlineItems:1.0909,onlineItemsYoy:0.007,activeBrands:1.0909,activeBrandsYoy:0.1901,searchCntDaily:856.7667,searchCntDailyYoy:-0.0836,searchUvDaily:17.6667,searchUvDailyYoy:-0.0324,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{jd:1360,pdd:8530,douyin:97900,ali1688:538,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:25,deal:25,user:8,competition:40},
     indicators:[
       [6,6,5,8],[13,12,0,0],[3,5,0,0],[7,18,8,13]
@@ -1785,7 +1843,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:59,max:100}, stationOut:{score:65,max:100},
     prevStationIn:{score:59,max:100}, prevStationOut:{score:58,max:100},
-    social:{xhs:40,xhsLikes:9756,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-13'},cia:{gmv:41091363.0741,gmvYoy:-0.0319,vol:60324,volYoy:-0.1673,searchCnt:22704918,searchYoy:-0.1661,clickCnt:2286370,clickUv:601203,convRate:0.0084,convRateYoy:0.0529,cartRate:0.0039,cartRateYoy:-0.1055,searchPop:3089522,searchPopYoy:-0.1397,searchUv:830915,searchUvYoy:-0.1147,scrapedAt:'2026-07-13'},supply_ext:{jd:1280,pdd:8540,douyin:52,ali1688:250,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:40,xhsLikes:9756,dy:4040,dyLikes:2256822,scrapedAt:'2026-07-13'},cia:{gmvDaily:10325032.8641,gmvDailyYoy:-0.1256,volDaily:152371.8,volDailyYoy:1.0659,onlineItems:3943.3667,onlineItemsYoy:0.6008,activeBrands:902.4667,activeBrandsYoy:0.192,searchCntDaily:1495920.6667,searchCntDailyYoy:-0.1618,searchUvDaily:41507.6667,searchUvDailyYoy:-0.1325,convRate:0.0085,convRateYoy:0.0658,cartRate:0.0039,cartRateYoy:-0.0981,searchPop:3062276,searchPopYoy:-0.1439,scrapedAt:'2026-07-15'},supply_ext:{jd:1280,pdd:8540,douyin:52,ali1688:250,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:32,deal:25,user:16,competition:44},
     indicators:[
       [10,6,10,6],[13,7,0,5],[0,13,0,3],[14,14,10,13]
@@ -1802,7 +1860,7 @@ let tracks = [
     dimMaxes:[45,51,44,58],
     stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
     prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
-    social:{xhs:36,xhsLikes:7096,dy:1574,dyLikes:12669,scrapedAt:'2026-07-13'},cia:{gmv:30290.62,gmvYoy:-0.8968,vol:131,volYoy:-0.9252,searchCnt:2034689,searchYoy:0.1636,clickCnt:190054,clickUv:61625,convRate:0.0121,convRateYoy:-0.196,cartRate:0.0044,cartRateYoy:-0.2324,searchPop:7286458,searchPopYoy:-0.1399,searchUv:89525,searchUvYoy:0.132,scrapedAt:'2026-07-13'},supply_ext:{jd:93200,pdd:8530,douyin:56900,ali1688:2140,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    social:{xhs:36,xhsLikes:7096,dy:1574,dyLikes:12669,scrapedAt:'2026-07-13'},cia:{gmvDaily:2832767.3259,gmvDailyYoy:0.182,volDaily:28672.3333,volDailyYoy:-0.1586,onlineItems:2422.9333,onlineItemsYoy:0.4093,activeBrands:604.8333,activeBrandsYoy:0.1162,searchCntDaily:1483252.2333,searchCntDailyYoy:0.164,searchUvDaily:36706.7333,searchUvDailyYoy:0.1999,convRate:0.0121,convRateYoy:-0.1916,cartRate:0.0044,cartRateYoy:-0.2292,searchPop:10966266,searchPopYoy:-0.0419,scrapedAt:'2026-07-15'},supply_ext:{jd:93200,pdd:8530,douyin:56900,ali1688:2140,scrapedAt:'2026-07-13'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
     prevScores:{supply:43,deal:25,user:21,competition:45},
     indicators:[
       [13,11,13,6],[13,7,0,5],[0,18,0,3],[14,5,10,13]
@@ -1953,7 +2011,7 @@ function renderTrackCards(){
         ${t.cia ? (function(){
           const c = t.cia;
           const fmtMoney = v => v==null ? '—' : (v>=1e8 ? (v/1e8).toFixed(2)+'亿' : v>=1e4 ? (v/1e4).toFixed(1)+'万' : Math.round(v).toLocaleString());
-          const fmtNum = v => v==null ? '—' : (v>=1e4 ? (v/1e4).toFixed(1)+'万' : Math.round(v).toLocaleString());
+          const fmtNum = v => v==null ? '—' : (v>=1e4 ? (v/1e4).toFixed(1)+'万' : v>=100 ? Math.round(v).toLocaleString() : (Math.round(v*10)/10).toLocaleString());
           const fmtPct = v => v==null ? '—' : (v*100).toFixed(2)+'%';
           const yoy = v => {
             if(v==null || v===0) return '<span class="cia-yoy flat">—</span>';
@@ -1964,28 +2022,38 @@ function renderTrackCards(){
           };
           return `
         <div class="cia-row">
-          <div class="cia-head"><span>🏢 天猫 CIA · 站内权威</span><span class="cia-badge">淘系</span></div>
-          <div class="cia-item" title="按词成交金额(支付口径)及同比">
-            <span class="cia-label">成交金额</span>
-            <span class="cia-val">${fmtMoney(c.gmv)}</span>
-            ${yoy(c.gmvYoy)}
+          <div class="cia-head"><span>🏢 天猫 CIA · 站内权威（日均口径）</span><span class="cia-badge">淘系</span></div>
+          <div class="cia-item" title="核心品类锁支付口径·日均成交金额及同比">
+            <span class="cia-label">日均成交金额</span>
+            <span class="cia-val">${fmtMoney(c.gmvDaily)}</span>
+            ${yoy(c.gmvDailyYoy)}
           </div>
-          <div class="cia-item" title="成交件数及同比">
-            <span class="cia-label">成交件数</span>
-            <span class="cia-val">${fmtNum(c.vol)}</span>
-            ${yoy(c.volYoy)}
+          <div class="cia-item" title="日均成交件数及同比">
+            <span class="cia-label">日均成交件数</span>
+            <span class="cia-val">${fmtNum(c.volDaily)}</span>
+            ${yoy(c.volDailyYoy)}
           </div>
-          <div class="cia-item" title="站内搜索次数及同比">
-            <span class="cia-label">搜索次数</span>
-            <span class="cia-val">${fmtNum(c.searchCnt)}</span>
-            ${yoy(c.searchYoy)}
+          <div class="cia-item" title="正常在线状态·日均在线商品数量及同比">
+            <span class="cia-label">日均在线商品数</span>
+            <span class="cia-val">${fmtNum(c.onlineItems)}</span>
+            ${yoy(c.onlineItemsYoy)}
           </div>
-          <div class="cia-item" title="搜索点击人数(UV)">
-            <span class="cia-label">搜索点击UV</span>
-            <span class="cia-val">${fmtNum(c.clickUv)}</span>
-            <span class="cia-yoy flat">UV</span>
+          <div class="cia-item" title="正常在线状态·日均动销品牌数及同比">
+            <span class="cia-label">日均动销品牌数</span>
+            <span class="cia-val">${fmtNum(c.activeBrands)}</span>
+            ${yoy(c.activeBrandsYoy)}
           </div>
-          <div class="cia-item" title="支付转化率=支付订单数/IPV(类目级)">
+          <div class="cia-item" title="日均站内搜索次数及同比">
+            <span class="cia-label">日均搜索次数</span>
+            <span class="cia-val">${fmtNum(c.searchCntDaily)}</span>
+            ${yoy(c.searchCntDailyYoy)}
+          </div>
+          <div class="cia-item" title="日均搜索点击人数(UV)及同比">
+            <span class="cia-label">日均搜索UV</span>
+            <span class="cia-val">${fmtNum(c.searchUvDaily)}</span>
+            ${yoy(c.searchUvDailyYoy)}
+          </div>
+          <div class="cia-item" title="成交转化率=支付订单数/IPV(类目级)">
             <span class="cia-label">支付转化率</span>
             <span class="cia-val">${fmtPct(c.convRate)}</span>
             ${yoy(c.convRateYoy)}
@@ -1995,39 +2063,40 @@ function renderTrackCards(){
             <span class="cia-val">${fmtPct(c.cartRate)}</span>
             ${yoy(c.cartRateYoy)}
           </div>
-          <div class="cia-item" title="搜索人气=搜索渠道去重买家数(类目级)">
-            <span class="cia-label">搜索人气</span>
-            <span class="cia-val">${fmtNum(c.searchPop)}</span>
-            ${yoy(c.searchPopYoy)}
-          </div>
-          <div class="cia-item" title="按关键词搜索UV(去重人数)">
-            <span class="cia-label">搜索UV(词)</span>
-            <span class="cia-val">${fmtNum(c.searchUv)}</span>
-            ${yoy(c.searchUvYoy)}
-          </div>
         </div>`;
         })() : ''}
         ${t.supply_ext ? (function(){
           const s = t.supply_ext;
+          const c = t.cia || {};
           const fmtK = v => v==null ? '—' : (v>=10000 ? (v/10000).toFixed(1)+'万' : v>=1000 ? (v/1000).toFixed(1)+'K' : v);
+          const fmtItem = v => v==null ? '—' : (v>=100 ? Math.round(v).toLocaleString() : (Math.round(v*10)/10));
           return `
         <div class="supply-row">
-          <div class="supply-head"><span>📦 跨平台供给 · Bing索引</span><span class="supply-badge">供给侧</span></div>
-          <div class="supply-item" title="京东站内该品类商品索引量">
+          <div class="supply-head"><span>📦 跨平台供给对比 · 日均在线商品数</span><span class="supply-badge">供给侧</span></div>
+          <div class="supply-item real" title="淘系日均在线商品数(CIA权威·正常在线状态)">
+            <span class="supply-label">淘系(在线)</span>
+            <span class="supply-val">${fmtItem(c.onlineItems)}</span>
+            <span class="supply-tag ok">权威</span>
+          </div>
+          <div class="supply-item" title="京东商品数(按SKU合并同款为1商品)·Bing索引估算,待登录校准">
             <span class="supply-label">京东</span>
             <span class="supply-val">${fmtK(s.jd)}</span>
+            <span class="supply-tag warn">待校准</span>
           </div>
-          <div class="supply-item" title="拼多多站内商品索引量">
+          <div class="supply-item" title="拼多多商品数·Bing索引估算,待登录校准">
             <span class="supply-label">拼多多</span>
             <span class="supply-val">${fmtK(s.pdd)}</span>
+            <span class="supply-tag warn">待校准</span>
           </div>
-          <div class="supply-item" title="抖音商城相关商品索引量">
+          <div class="supply-item" title="抖音商城商品数·蝉妈妈待登录采集">
             <span class="supply-label">抖音商城</span>
             <span class="supply-val">${fmtK(s.douyin)}</span>
+            <span class="supply-tag warn">待校准</span>
           </div>
           <div class="supply-item" title="1688供应商/批发索引量">
             <span class="supply-label">1688(B2B)</span>
             <span class="supply-val">${fmtK(s.ali1688)}</span>
+            <span class="supply-tag warn">待校准</span>
           </div>
         </div>`;
         })() : ''}
@@ -2483,6 +2552,82 @@ function scrollToSection(id){
   document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
+// ===== RENDER 自我目标设置与考核 =====
+const KPI_TARGETS = {
+  '移动监控机器人':          {items:500,  brands:50,  gmvDaily:200000},
+  '桌面机器人':              {items:300,  brands:30,  gmvDaily:50000},
+  '安防/巡逻/巡检/安检机器人':{items:200,  brands:20,  gmvDaily:30000},
+  'AI智能锁':                {items:1000, brands:100, gmvDaily:500000},
+  'AI监控摄像头':            {items:10000,brands:1000,gmvDaily:2000000},
+};
+function renderKpiBoard(){
+  const board = document.getElementById('kpiBoard');
+  if(!board) return;
+  const fmtMoney = v => v==null ? '—' : (v>=1e8 ? (v/1e8).toFixed(2)+'亿' : v>=1e4 ? (v/1e4).toFixed(1)+'万' : Math.round(v).toLocaleString());
+  const fmtNum = v => v==null ? '—' : (v>=1e4 ? (v/1e4).toFixed(1)+'万' : v>=100 ? Math.round(v).toLocaleString() : (Math.round(v*10)/10));
+  const progCard = (title, cur, tgt, fmt) => {
+    const pct = (cur!=null && tgt>0) ? Math.min(100, cur/tgt*100) : 0;
+    const done = cur!=null && cur>=tgt;
+    const color = done ? '#059669' : pct>=50 ? '#d97706' : '#dc2626';
+    return `
+      <div class="kpi-goal-card">
+        <div class="kpi-goal-card-title">${title}</div>
+        <div class="kpi-goal-nums">
+          <span class="kpi-goal-cur" style="color:${color}">${fmt(cur)}</span>
+          <span class="kpi-goal-tgt">/ 目标 ${fmt(tgt)}</span>
+        </div>
+        <div class="kpi-prog-track"><div class="kpi-prog-fill" style="width:${pct}%;background:${color}"></div></div>
+        <div class="kpi-prog-label"><span>${done?'✅ 已达成':'达成率 '+pct.toFixed(0)+'%'}</span><span>2027.3.31</span></div>
+      </div>`;
+  };
+  const ratioCard = (title, taoVal, cmpVal, fmt) => {
+    // cmpVal null => 待校准
+    let jdCls='pend', jdTxt='待校准', jdRatio='—';
+    if(cmpVal!=null && cmpVal>0){
+      const r = taoVal/cmpVal;
+      jdCls = r>2 ? 'pass' : 'fail';
+      jdRatio = r.toFixed(2)+'×';
+      jdTxt = r>2 ? '达标' : '未达标';
+    }
+    return `<div class="kpi-ratio-card"><div class="kpi-ratio-card-title">${title}</div>
+      <div class="kpi-ratio-pair">
+        <div class="kpi-ratio-item"><div class="kpi-ratio-vs">淘系</div><div class="kpi-ratio-val" style="color:#111">${fmt(taoVal)}</div></div>
+        <div class="kpi-ratio-item"><div class="kpi-ratio-vs">控比结果</div><div class="kpi-ratio-val ${jdCls}">${jdRatio}</div><div class="kpi-ratio-target">目标 &gt;2 · ${jdTxt}</div></div>
+      </div></div>`;
+  };
+  board.innerHTML = tracks.map(t => {
+    const tgt = KPI_TARGETS[t.name];
+    const c = t.cia || {};
+    const s = t.supply_ext || {};
+    if(!tgt) return '';
+    // 达成计数
+    let done=0, total=3;
+    if(c.onlineItems!=null && c.onlineItems>=tgt.items) done++;
+    if(c.activeBrands!=null && c.activeBrands>=tgt.brands) done++;
+    if(c.gmvDaily!=null && c.gmvDaily>=tgt.gmvDaily) done++;
+    const tagCls = done>=3?'ok':done>=1?'mid':'low';
+    const tagTxt = done>=3?'全部达成':done+'/'+total+' 达成';
+    return `
+    <div class="kpi-track-block">
+      <div class="kpi-track-head">
+        <span class="kpi-track-name">${t.name}</span>
+        <span class="kpi-track-tag ${tagCls}">${tagTxt}</span>
+      </div>
+      <div class="kpi-goal-grid">
+        ${progCard('淘系在线商品数(日均)', c.onlineItems, tgt.items, fmtNum)}
+        ${progCard('淘系品牌供给数(日均动销)', c.activeBrands, tgt.brands, fmtNum)}
+        ${progCard('核心品类锁支付GMV(日均)', c.gmvDaily, tgt.gmvDaily, fmtMoney)}
+      </div>
+      <div class="kpi-ratio-row">
+        ${ratioCard('① 商品供给数量控比 · 淘系VS京东', c.onlineItems, null, fmtNum)}
+        ${ratioCard('① 商品供给数量控比 · 淘系VS抖音', c.onlineItems, null, fmtNum)}
+        ${ratioCard('② 支付成交GMV控比 · 淘系VS京东', c.gmvDaily, null, fmtMoney)}
+        ${ratioCard('② 支付成交GMV控比 · 淘系VS抖音', c.gmvDaily, null, fmtMoney)}
+      </div>
+    </div>`;
+  }).join('');
+}
+
 // ===== RENDER ALL =====
 function renderAll(){
   renderKPI();
@@ -2493,6 +2638,7 @@ function renderAll(){
   renderTimeline();
   renderHistory();
   renderDetailBlocks();
+  renderKpiBoard();
 }
 
 // ===== INIT =====

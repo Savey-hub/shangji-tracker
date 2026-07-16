@@ -382,6 +382,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <a onclick="scrollToSection('timeline')"><span class="icon">&#128197;</span>阶段时间线</a>
     <a onclick="scrollToSection('history')"><span class="icon">&#128221;</span>更新日志</a>
     <a onclick="scrollToSection('weekly-report')"><span class="icon">&#128203;</span>周报摘要</a>
+    <a onclick="scrollToSection('recruit-map')"><span class="icon">&#127919;</span>招商作战地图</a>
     <a onclick="scrollToSection('kpi-goals')"><span class="icon">&#127919;</span>目标考核</a>
     <a onclick="scrollToSection('data-sources')"><span class="icon">&#128279;</span>数据源指引</a>
   </nav>
@@ -398,7 +399,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <div class="topbar-left">
       <strong style="font-size:1rem;color:var(--primary)">商机孵化实时看板</strong>
       <span class="update-freq-badge"><span class="freq-dot"></span>每周一/四 09:00 自动更新</span>
-      <span class="last-update" id="lastUpdate">最近更新：2026-07-15 09:20</span>
+      <span class="last-update" id="lastUpdate">全站数据截至 2026-07-15 · 2026-07-16 09:45 刷新</span>
     </div>
     <div class="topbar-right">
       <button class="btn btn-outline" onclick="refreshData()">&#8635; 刷新数据</button>
@@ -412,27 +413,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
       <div class="kpi-bar" id="kpiBar"></div>
     </section>
 
-    <!-- Data Source Section -->
-    <section class="data-source-section animate-in">
-      <div class="data-source-card">
-        <span class="ds-label">&#128218; 数据来源</span>
-        <span class="ds-tag">洛图科技</span>
-        <span class="ds-tag">OFweek</span>
-        <span class="ds-tag">AVC奥维云网</span>
-        <span class="ds-tag">IIM Research</span>
-        <span class="ds-tag">上市公司财报</span>
-        <span class="ds-tag">36kr</span>
-        <span class="ds-tag">财联社</span>
-        <span class="ds-tag">小红书</span>
-        <span class="ds-tag">抖音/蝉妈妈</span>
-      </div>
-    </section>
-
     <!-- ===== NEW: Excel数据总览 Section ===== -->
     <section id="excel-overview" class="excel-section animate-in">
       <div class="section-header">
         <div class="section-title">Excel数据总览</div>
-        <span style="font-size:.75rem;color:var(--text-secondary)">数据快照 &middot; 2026-07-06</span>
+        <span style="font-size:.75rem;color:var(--text-secondary)">数据时间以顶部全站标注为准</span>
       </div>
       <div class="excel-card">
         <!-- Pure CSS Tabs -->
@@ -462,68 +447,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
                   <th style="width:9%">周环比</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td><span class="rank-num" style="background:#FFD700">1</span></td>
-                  <td>AI监控摄像头</td>
-                  <td><span class="score-pill score-high">24</span></td>
-                  <td><span class="score-pill score-mid">14</span></td>
-                  <td><span class="score-pill score-low">9</span></td>
-                  <td><span class="score-pill score-mid">18</span></td>
-                  <td><strong style="font-size:1.05rem;color:var(--primary)">65</strong></td>
-                  <td><span class="stage-badge stage-accel">加速期</span></td>
-                  <td>66</td>
-                  <td><span class="change-down">&#9660; -1</span></td>
-                </tr>
-                <tr>
-                  <td><span class="rank-num" style="background:#C0C0C0">2</span></td>
-                  <td>AI智能锁</td>
-                  <td><span class="score-pill score-high">20</span></td>
-                  <td><span class="score-pill score-low">11</span></td>
-                  <td><span class="score-pill score-low">7</span></td>
-                  <td><span class="score-pill score-high">25</span></td>
-                  <td><strong style="font-size:1.05rem;color:var(--primary)">63</strong></td>
-                  <td><span class="stage-badge stage-grow">成长期</span></td>
-                  <td>56</td>
-                  <td><span class="change-up">&#9650; +7</span></td>
-                </tr>
-                <tr>
-                  <td><span class="rank-num" style="background:#CD7F32">3</span></td>
-                  <td>安防/巡逻/巡检/安检机器人</td>
-                  <td><span class="score-pill score-mid">15</span></td>
-                  <td><span class="score-pill score-mid">15</span></td>
-                  <td><span class="score-pill score-low">4</span></td>
-                  <td><span class="score-pill score-high">21</span></td>
-                  <td><strong style="font-size:1.05rem;color:var(--primary)">55</strong></td>
-                  <td><span class="stage-badge stage-grow">成长期</span></td>
-                  <td>49</td>
-                  <td><span class="change-up">&#9650; +6</span></td>
-                </tr>
-                <tr>
-                  <td><span class="rank-num" style="background:#94A3B8">4</span></td>
-                  <td>移动监控机器人</td>
-                  <td><span class="score-pill score-low">10</span></td>
-                  <td><span class="score-pill score-mid">15</span></td>
-                  <td><span class="score-pill score-low">9</span></td>
-                  <td><span class="score-pill score-mid">16</span></td>
-                  <td><strong style="font-size:1.05rem;color:var(--primary)">50</strong></td>
-                  <td><span class="stage-badge stage-grow">成长期</span></td>
-                  <td>51</td>
-                  <td><span class="change-down">&#9660; -1</span></td>
-                </tr>
-                <tr>
-                  <td><span class="rank-num" style="background:#94A3B8">5</span></td>
-                  <td>桌面机器人</td>
-                  <td><span class="score-pill score-low">11</span></td>
-                  <td><span class="score-pill score-mid">16</span></td>
-                  <td><span class="score-pill score-low">8</span></td>
-                  <td><span class="score-pill score-mid">15</span></td>
-                  <td><strong style="font-size:1.05rem;color:var(--primary)">50</strong></td>
-                  <td><span class="stage-badge stage-grow">成长期</span></td>
-                  <td>48</td>
-                  <td><span class="change-up">&#9650; +2</span></td>
-                </tr>
-              </tbody>
+              <tbody id="excelOverviewBody"></tbody>
             </table>
           </div>
 
@@ -535,6 +459,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
           <!-- Tab 3: 更新日志 -->
           <div class="tab-panel tab-panel-changelog">
             <div class="changelog-timeline">
+              <div class="changelog-entry">
+                <div class="cl-time">2026-07-16 09:45</div>
+                <div class="cl-text">全站统一更新（数据截至07-15，07-16刷新）：CIA淘系内数据按最新全量关键词重跑；评分模型删除3项指标后按比例归一到四维各25分、总分100；总分统一改为四维之和并与指标明细对齐；阶段按总分区间判定；Excel总览/周报排名改为动态渲染防漂移；顶栏统一标注数据时间，删除重复的顶部数据来源行，招商作战地图加入左侧导航</div>
+              </div>
               <div class="changelog-entry">
                 <div class="cl-time">2026-07-13 09:31</div>
                 <div class="cl-text">安防/巡检机器人：竞对动态 +3→满分（亿嘉和7/9涨停+申昊20亿转型+码力千万融资+国网68亿集采），平台资源投入 +3（工信部标准公示），总分49→55(+6)</div>
@@ -693,11 +621,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
           <div class="report-meta">
             <div class="report-meta-item">
               <div class="meta-label">报告周期</div>
-              <div class="meta-value">2026年第28周 (07/01 - 07/06)</div>
+              <div class="meta-value">2026年第29周 (07/09 - 07/15)</div>
             </div>
             <div class="report-meta-item">
               <div class="meta-label">生成时间</div>
-              <div class="meta-value">2026-07-06 09:00</div>
+              <div class="meta-value">2026-07-16 09:45</div>
             </div>
           </div>
         </div>
@@ -722,53 +650,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
                 <th style="width:8%">环比</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td><strong style="color:#FFD700">1</strong></td>
-                <td style="font-weight:600">AI监控摄像头</td>
-                <td><strong>65</strong>/100</td>
-                <td><span class="stage-badge stage-accel">加速期</span></td>
-                <td>24</td><td>14</td><td>9</td><td>18</td>
-                <td>66</td>
-                <td><span class="change-down">&#9660; -1</span></td>
-              </tr>
-              <tr>
-                <td><strong style="color:#C0C0C0">2</strong></td>
-                <td style="font-weight:600">AI智能锁</td>
-                <td><strong>63</strong>/100</td>
-                <td><span class="stage-badge stage-grow">成长期</span></td>
-                <td>20</td><td>11</td><td>7</td><td>25</td>
-                <td>56</td>
-                <td><span class="change-up">&#9650; +7</span></td>
-              </tr>
-              <tr>
-                <td><strong style="color:#CD7F32">3</strong></td>
-                <td style="font-weight:600">安防/巡逻/巡检/安检机器人</td>
-                <td><strong>55</strong>/100</td>
-                <td><span class="stage-badge stage-grow">成长期</span></td>
-                <td>15</td><td>15</td><td>4</td><td>21</td>
-                <td>49</td>
-                <td><span class="change-up">&#9650; +6</span></td>
-              </tr>
-              <tr>
-                <td><strong>4</strong></td>
-                <td style="font-weight:600">移动监控机器人</td>
-                <td><strong>50</strong>/100</td>
-                <td><span class="stage-badge stage-grow">成长期</span></td>
-                <td>10</td><td>15</td><td>9</td><td>16</td>
-                <td>51</td>
-                <td><span class="change-down">&#9660; -1</span></td>
-              </tr>
-              <tr>
-                <td><strong>5</strong></td>
-                <td style="font-weight:600">桌面机器人</td>
-                <td><strong>50</strong>/100</td>
-                <td><span class="stage-badge stage-grow">成长期</span></td>
-                <td>11</td><td>16</td><td>8</td><td>15</td>
-                <td>48</td>
-                <td><span class="change-up">&#9650; +2</span></td>
-              </tr>
-            </tbody>
+            <tbody id="weeklyRankBody"></tbody>
           </table>
         </div>
       </div>
@@ -780,23 +662,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
           <div class="insight-grid">
             <div class="insight-bullet">
               <span class="insight-num">1</span>
-              <span>AI监控摄像头以65分进入加速期，供给侧近乎满分(24/25)，但竞争加剧：头部集中度下降2.2pp，神眸跃升至营收第5。4月销售额+8.5%显示高端化(8MP占36.9%)正在驱动价值增长。</span>
+              <span>AI监控摄像头以66分居首、稳居加速期，供给侧近乎满分(24/25)，但竞争加剧：竞对动态较上期回落1分，头部集中度下降2.2pp、神眸跃升至营收第5。淘系日均GMV同比+30.6%，高端化(8MP占36.9%)正驱动价值增长。</span>
             </div>
             <div class="insight-bullet">
               <span class="insight-num">2</span>
-              <span>桌面机器人从孵化期跃升至成长期(48→50)，新品上架速度提升(+2)。CES 2026上Loona Deskmate发布、Reachy Mini 5天售$100万+验证市场热度，但小红书口碑两极分化(负面率35%)需警惕。</span>
+              <span>桌面机器人48分、位列成长期(较上期+1)，供给侧仍偏薄。CES 2026上Loona Deskmate发布、Reachy Mini 5天售$100万+验证市场热度，但小红书口碑两极分化(负面率35%)需警惕。</span>
             </div>
             <div class="insight-bullet">
               <span class="insight-num">3</span>
-              <span>AI智能锁总分下滑3分(59→56)，618量价额齐降(销量-16.5%，均价-11.5%)拉低成交侧得分。但以旧换新政策全国覆盖(+1分)和头部品牌全面参与(+1分)提供支撑，萤石Y30系列/华为M2新品持续激活市场。</span>
+              <span>AI智能锁升至61分、跨入加速期(较上期+3)，竞争/趋势侧满分(22/25)：德施曼超越小米登顶、TOP3占过半份额、以旧换新政策全国覆盖形成支撑。但618量价额齐降(销量-16.5%、均价-11.5%)仍压制成交侧，需警惕价格战。</span>
             </div>
             <div class="insight-bullet">
               <span class="insight-num">4</span>
-              <span>安防/巡检机器人同比增速从7分下调至5分(市场+16%)，亿嘉和亏损收窄至4156万(上年亏2.18亿)，申昊科技Q1营收+258.7%显示行业复苏。B2B属性仍限制电商评分，建议关注1688企业购渠道。</span>
+              <span>安防/巡检机器人51分、成长期(较上期+3)，竞争/趋势侧回升：亿嘉和7/9涨停+申昊20亿转型算力、国网68亿集采、工信部标准公示。但B2B属性仍限制电商评分(用户侧仅5/25)，建议关注1688企业购渠道。</span>
             </div>
             <div class="insight-bullet">
               <span class="insight-num">5</span>
-              <span>移动监控机器人获工信部"AI+制造"专项政策利好(+1分)，4G移动监控户外占比达48.4%。品类仍为5507万台监控大市场的细分赛道，独立规模有待验证。</span>
+              <span>移动监控机器人51分、成长期(较上期-1)，工信部"AI+制造"专项政策利好、4G移动监控户外占比达48.4%。品类仍为5507万台监控大市场的细分赛道，独立规模有待验证。</span>
             </div>
           </div>
         </div>
@@ -923,7 +805,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
       .rec-po b{display:block;margin-bottom:3px}
       .rec-full{grid-column:1 / -1}
       </style>
-      <div class="report-card">
+      <div class="report-card" id="recruit-map" style="scroll-margin-top:70px">
         <div class="report-card-header">&#127919; 招商作战地图 · 具体行动指引</div>
         <div class="report-card-body rec-map">
           <div class="rec-legend">
@@ -1930,7 +1812,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 <div class="ds-legend-item"><span class="ds-badge ds-badge-ok">T1/T2 · 已启用</span> 自动化接入</div>
 <div class="ds-legend-item"><span class="ds-badge ds-badge-off">T3/T4 · 已停用</span> 冗余覆盖或反爬对抗</div>
 <div class="ds-legend-item"><span class="ds-badge ds-badge-warn">手工/需登录</span> 需人工介入</div>
-<div class="ds-legend-item">🗓 最后同步: 2026-07-10</div>
+<div class="ds-legend-item">🗓 最后同步: 2026-07-15</div>
 </div>
 </section>
 </div>
@@ -1951,7 +1833,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 </div>
 
 <!-- Watermark -->
-<div class="watermark">&#128218; 基于公开行业数据 &middot; 2026-07-06</div>
+<div class="watermark">&#128218; 基于公开行业数据 &middot; 2026-07-15</div>
 
 <script>
 // ===== DATA =====
@@ -1975,13 +1857,13 @@ const INDICATOR_DEFS = [
     {name:'头部商家参与度',max:5,source:'品牌排名报告'}
   ]},
   { dim:'成交', items:[
-    {name:'GMV规模',max:8,source:'洛图/OFweek年报'},
-    {name:'GMV增速',max:7,source:'洛图/上市公司财报'}
+    {name:'GMV规模',max:13,source:'洛图/OFweek年报'},
+    {name:'GMV增速',max:12,source:'洛图/上市公司财报'}
   ]},
   { dim:'用户', items:[
-    {name:'搜索热度',max:8,source:'待补充(需生意参谋)'},
-    {name:'访客规模',max:7,source:'推算(基于销量)'},
-    {name:'复购率',max:5,source:'行业估算'}
+    {name:'搜索热度',max:10,source:'待补充(需生意参谋)'},
+    {name:'访客规模',max:9,source:'推算(基于销量)'},
+    {name:'复购率',max:6,source:'行业估算'}
   ]},
   { dim:'竞争', items:[
     {name:'品类渗透率',max:8,source:'洛图/AVC渗透率'},
@@ -1997,92 +1879,75 @@ const PENDING_SOURCE = '待补充';
 let tracks = [
   {
     id:0, name:'移动监控机器人',
-    scores:{supply:17,deal:27,user:21,competition:40},
-    dimMaxes:[45,51,44,58],
+    scores:{supply:9,deal:13,user:12,competition:17},
+    dimMaxes:[25,25,25,25],
     stationIn:{score:44,max:100}, stationOut:{score:61,max:100},
     prevStationIn:{score:44,max:100}, prevStationOut:{score:64,max:100},
-    social:{xhs:299,xhsLikes:99058,dy:14253,dyLikes:1032960,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:112432.3258,gmvDailyYoy:-0.0391,volDaily:257,volDailyYoy:0.6253,onlineItems:39.7143,onlineItemsYoy:0.7457,activeBrands:20.5714,activeBrandsYoy:0.5526,searchCntDaily:37460.2857,searchCntDailyYoy:-0.0956,searchUvDaily:1131.2857,searchUvDailyYoy:-0.1243,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'2500~5000',douyinMall:97,douyinMallCapped:false,ali1688:153,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
-    prevScores:{supply:17,deal:27,user:21,competition:42},
-    indicators:[
-      [6,0,5,6],[10,12],[0,18,3],[7,18,5,10]
-    ],
-    prevIndicators:[
-      [6,0,5,6],[10,12],[0,18,3],[7,18,5,10]
-    ],
+    social:{xhs:299,xhsLikes:99058,dy:14253,dyLikes:1032960,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:105660.8758,gmvDailyYoy:-0.0107,volDaily:246.4286,volDailyYoy:0.6581,onlineItems:38.7143,onlineItemsYoy:0.6387,activeBrands:19.8571,activeBrandsYoy:0.4311,searchCntDaily:37996.8571,searchCntDailyYoy:-0.0882,searchUvDaily:1123.8571,searchUvDailyYoy:-0.1324,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-16'},supply_ext:{douyinBand:'2500~5000',douyinMall:97,douyinMallCapped:false,ali1688:153,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    prevScores:{supply:9,deal:13,user:12,competition:18},
+    indicators:[[2,3,2,2],[7,6],[5,4,3],[6,5,3,3]],
+    prevIndicators:[[2,3,2,2],[7,6],[5,4,3],[5,5,4,4]],
     stage:'成长期',
     keyInsight:'工信部AI+制造专项支持具身智能; 4G移动监控户外占比48.4%'
   },
   {
     id:1, name:'桌面机器人',
-    scores:{supply:15,deal:30,user:16,competition:37},
-    dimMaxes:[45,51,44,58],
+    scores:{supply:8,deal:15,user:9,competition:16},
+    dimMaxes:[25,25,25,25],
     stationIn:{score:42,max:100}, stationOut:{score:56,max:100},
     prevStationIn:{score:37,max:100}, prevStationOut:{score:56,max:100},
-    social:{xhs:1680,xhsLikes:243851,dy:9381,dyLikes:1162829,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:34956.8686,gmvDailyYoy:6.5295,volDaily:49.2857,volDailyYoy:4.8849,onlineItems:7.5714,onlineItemsYoy:0.6825,activeBrands:6.2857,activeBrandsYoy:0.3233,searchCntDaily:81022.2857,searchCntDailyYoy:1.0896,searchUvDaily:1716.2857,searchUvDailyYoy:1.3068,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'2500~5000',douyinMall:716,douyinMallCapped:false,ali1688:501,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
-    prevScores:{supply:13,deal:30,user:16,competition:37},
-    indicators:[
-      [3,3,3,6],[8,12],[3,10,3],[4,18,5,10]
-    ],
-    prevIndicators:[
-      [3,3,3,6],[8,12],[3,10,3],[4,18,5,10]
-    ],
+    social:{xhs:1680,xhsLikes:243851,dy:9381,dyLikes:1162829,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:32680.0786,gmvDailyYoy:6.264,volDaily:44.8571,volDailyYoy:4.0543,onlineItems:6.2857,onlineItemsYoy:0.3233,activeBrands:5.8571,activeBrandsYoy:0.1714,searchCntDaily:80595,searchCntDailyYoy:1.0394,searchUvDaily:1720.1429,searchUvDailyYoy:1.2993,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-16'},supply_ext:{douyinBand:'2500~5000',douyinMall:716,douyinMallCapped:false,ali1688:501,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    prevScores:{supply:7,deal:15,user:9,competition:16},
+    indicators:[[2,2,2,2],[8,7],[4,3,2],[6,4,3,3]],
+    prevIndicators:[[3,2,1,1],[8,7],[4,3,2],[6,4,3,3]],
     stage:'孕化期',
     keyInsight:'Loona Deskmate CES 2026发布; Reachy Mini 5天售$100万+; 口碑两极分化'
   },
   {
     id:2, name:'安防/巡逻/巡检/安检机器人',
-    scores:{supply:25,deal:25,user:8,competition:46},
-    dimMaxes:[45,51,44,58],
+    scores:{supply:14,deal:12,user:5,competition:20},
+    dimMaxes:[25,25,25,25],
     stationIn:{score:55,max:100}, stationOut:{score:49,max:100},
     prevStationIn:{score:55,max:100}, prevStationOut:{score:43,max:100},
-    social:{xhs:307,xhsLikes:5128,dy:1665,dyLikes:113804,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:3699.5886,gmvDailyYoy:-0.0903,volDaily:2.5714,volDailyYoy:0.5429,onlineItems:2.2857,onlineItemsYoy:0.7143,activeBrands:2,activeBrandsYoy:0.5,searchCntDaily:2754.2857,searchCntDailyYoy:0.1761,searchUvDaily:40.5714,searchUvDailyYoy:0.0712,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'0~250',douyinMall:89,douyinMallCapped:false,ali1688:538,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
-    prevScores:{supply:25,deal:25,user:8,competition:40},
-    indicators:[
-      [6,6,5,8],[13,12],[3,5,0],[7,18,8,13]
-    ],
-    prevIndicators:[
-      [6,6,5,8],[13,12],[3,5,0],[7,18,5,10]
-    ],
+    social:{xhs:307,xhsLikes:5128,dy:1665,dyLikes:113804,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:3654.4457,gmvDailyYoy:0.0352,volDaily:2.2857,volDailyYoy:0.3061,onlineItems:2.1429,onlineItemsYoy:0.2245,activeBrands:1.8571,activeBrandsYoy:0.2381,searchCntDaily:2766.7143,searchCntDailyYoy:0.2218,searchUvDaily:40.4286,searchUvDailyYoy:0.071,convRate:null,convRateYoy:null,cartRate:null,cartRateYoy:null,searchPop:null,searchPopYoy:null,scrapedAt:'2026-07-16'},supply_ext:{douyinBand:'0~250',douyinMall:89,douyinMallCapped:false,ali1688:538,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    prevScores:{supply:14,deal:12,user:5,competition:17},
+    indicators:[[4,4,3,3],[6,6],[2,2,1],[6,6,4,4]],
+    prevIndicators:[[4,4,3,3],[6,6],[2,2,1],[6,5,3,3]],
     stage:'成长期',
     keyInsight:'亿嘉和7/9涨停+申昊20亿转型算力; 码力机器人千万融资; 国网68亿集采; 工信部标准公示'
   },
   {
     id:3, name:'AI智能锁',
-    scores:{supply:32,deal:25,user:16,competition:51},
-    dimMaxes:[45,51,44,58],
+    scores:{supply:18,deal:12,user:9,competition:22},
+    dimMaxes:[25,25,25,25],
     stationIn:{score:59,max:100}, stationOut:{score:65,max:100},
     prevStationIn:{score:59,max:100}, prevStationOut:{score:58,max:100},
-    social:{xhs:22768,xhsLikes:759228,dy:140303,dyLikes:6883970,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:1227651.7516,gmvDailyYoy:-0.1347,volDaily:686.5714,volDailyYoy:-0.0991,onlineItems:120.1429,onlineItemsYoy:0.8809,activeBrands:23.5714,activeBrandsYoy:0.3095,searchCntDaily:1429468.4286,searchCntDailyYoy:-0.175,searchUvDaily:39355.4286,searchUvDailyYoy:-0.1296,convRate:0.0082,convRateYoy:0.0963,cartRate:null,cartRateYoy:null,searchPop:760963,searchPopYoy:-0.2188,scrapedAt:'2026-07-15'},supply_ext:{douyinBand:'10w+',douyinMall:2000,douyinMallCapped:true,douyinGmvDaily:558238,douyinBrandsDaily:35,douyinProductsDaily:197,ali1688:250,scrapedAt:'2026-07-15',douyinGmvNote:'蝉妈妈brandRank在售品牌案例库当日销售额下限值(2026-07-14),已重新登录校验'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
-    prevScores:{supply:32,deal:25,user:16,competition:44},
-    indicators:[
-      [10,6,10,6],[13,7],[0,13,3],[14,14,10,13]
-    ],
-    prevIndicators:[
-      [10,6,10,6],[13,7],[0,13,3],[14,10,10,10]
-    ],
+    social:{xhs:22768,xhsLikes:759228,dy:140303,dyLikes:6883970,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:1123441.7021,gmvDailyYoy:0.0859,volDaily:627.1429,volDailyYoy:0.0483,onlineItems:114.7143,onlineItemsYoy:0.8101,activeBrands:23.2857,activeBrandsYoy:0.3119,searchCntDaily:1439275.8571,searchCntDailyYoy:-0.1693,searchUvDaily:39426.7143,searchUvDailyYoy:-0.1273,convRate:0.008,convRateYoy:0.0901,cartRate:null,cartRateYoy:null,searchPop:759540,searchPopYoy:-0.2193,scrapedAt:'2026-07-16'},supply_ext:{douyinBand:'10w+',douyinMall:2000,douyinMallCapped:true,douyinGmvDaily:558238,douyinBrandsDaily:35,douyinProductsDaily:197,ali1688:250,scrapedAt:'2026-07-15',douyinGmvNote:'蝉妈妈brandRank在售品牌案例库当日销售额下限值(2026-07-14),已重新登录校验'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    prevScores:{supply:18,deal:12,user:9,competition:19},
+    indicators:[[5,5,4,4],[6,6],[4,3,2],[8,6,4,4]],
+    prevIndicators:[[5,5,4,4],[6,6],[4,3,2],[6,5,4,4]],
     stage:'成长期',
     keyInsight:'德施曼5月超越小米登顶线上第一; TOP3占过半份额; 猫眼大屏锁占比57.7%; 内容电商增速>60%'
   },
   {
     id:4, name:'AI监控摄像头',
-    scores:{supply:43,deal:25,user:21,competition:42},
-    dimMaxes:[45,51,44,58],
+    scores:{supply:24,deal:12,user:12,competition:18},
+    dimMaxes:[25,25,25,25],
     stationIn:{score:67,max:100}, stationOut:{score:64,max:100},
     prevStationIn:{score:67,max:100}, prevStationOut:{score:67,max:100},
-    social:{xhs:3491,xhsLikes:366831,dy:57671,dyLikes:2407126,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:3234965.2395,gmvDailyYoy:0.353,volDaily:11878.4286,volDailyYoy:0.3515,onlineItems:920.8571,onlineItemsYoy:0.7445,activeBrands:107.5714,activeBrandsYoy:0.4391,searchCntDaily:1431466.7143,searchCntDailyYoy:0.1199,searchUvDaily:35349.2857,searchUvDailyYoy:0.1645,convRate:0.0122,convRateYoy:-0.1818,cartRate:null,cartRateYoy:null,searchPop:2476112,searchPopYoy:-0.1536,scrapedAt:'2026-07-15',caliberNote:'口径=监控器材及系统类目 且(标题含AI 或 属性"是否接入AI大模型"=千问大模型)。已剔除属性值"其他"(经核查为类目默认/未填桶,单独即¥651万/日、2490件,会把非AI机型全部计入,严重高估)'},supply_ext:{douyinBand:'10w+',douyinMall:2000,douyinMallCapped:true,douyinGmvDaily:907582,douyinBrandsDaily:50,douyinProductsDaily:401,ali1688:2140,scrapedAt:'2026-07-15',douyinGmvNote:'蝉妈妈brandRank在售品牌案例库当日销售额下限值(2026-07-14),已重新登录校验'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
-    prevScores:{supply:43,deal:25,user:21,competition:45},
-    indicators:[
-      [13,11,13,6],[13,7],[0,18,3],[14,5,10,13]
-    ],
-    prevIndicators:[
-      [13,11,13,6],[13,7],[0,18,3],[14,5,10,13]
-    ],
+    social:{xhs:3491,xhsLikes:366831,dy:57671,dyLikes:2407126,scrapedAt:'2026-07-15'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},cia:{gmvDaily:3009934.3329,gmvDailyYoy:0.3059,volDaily:11056.2857,volDailyYoy:0.1234,onlineItems:901.7143,onlineItemsYoy:0.7184,activeBrands:105.8571,activeBrandsYoy:0.4091,searchCntDaily:1431106.5714,searchCntDailyYoy:0.1235,searchUvDaily:35008,searchUvDailyYoy:0.1598,convRate:0.0122,convRateYoy:-0.1818,cartRate:null,cartRateYoy:null,searchPop:2476112,searchPopYoy:-0.1536,scrapedAt:'2026-07-16',caliberNote:'口径=监控器材及系统类目 且(标题含AI 或 属性"是否接入AI大模型"=千问大模型)。已剔除属性值"其他"(经核查为类目默认/未填桶,单独即¥651万/日、2490件,会把非AI机型全部计入,严重高估)'},supply_ext:{douyinBand:'10w+',douyinMall:2000,douyinMallCapped:true,douyinGmvDaily:907582,douyinBrandsDaily:50,douyinProductsDaily:401,ali1688:2140,scrapedAt:'2026-07-15',douyinGmvNote:'蝉妈妈brandRank在售品牌案例库当日销售额下限值(2026-07-14),已重新登录校验'},trend:{media:10,acad:0,github:0,total:10,mediaN:0,acadN:0,githubN:0},
+    prevScores:{supply:24,deal:12,user:12,competition:19},
+    indicators:[[7,7,5,5],[6,6],[5,4,3],[5,5,4,4]],
+    prevIndicators:[[7,7,5,5],[6,6],[5,4,3],[6,5,4,4]],
     stage:'成长期',
     keyInsight:'Q1线上1316万台; 8MP成主流(36.9%); 萤石十余款AI新品发布'
   }
 ];
 
 let updateHistory = [
+  {time:'2026-07-16',text:'一致性修复：总分改为四维之和(供给+成交+用户+竞争)，与指标明细完全对齐；阶段严格按总分区间判定(AI摄66→加速期、AI锁61→加速期)；Excel总览与周报排名表改为读取同一数据源动态渲染，杜绝手改漂移；全站统一在顶栏标注数据时间(截至07-15/07-16刷新)，删除重复的顶部数据来源行',color:'#C00000'},
+  {time:'2026-07-16',text:'评分模型权重归一化修复：删除支付转化率/客单价趋势/收藏加购率3项指标后，按比例把成交侧重分配为[GMV规模13/GMV增速12]、用户侧为[搜索热度10/访客规模9/复购率6]，四维恢复各25分、总分归一到100',color:'#C00000'},
+  {time:'2026-07-16',text:'CIA淘系内数据按最新全量关键词重跑刷新（近7天日均口径）；AI监控摄像头搜索人气因组合查询字段缺失沿用上一轮可校验值',color:'#2E75B6'},
   {time:'2026-07-13',track:'安防/巡逻/巡检/安检机器人',indicator:'竞对动态',oldVal:10,newVal:13,color:'#ED7D31'},
   {time:'2026-07-13',track:'安防/巡逻/巡检/安检机器人',indicator:'平台资源投入',oldVal:5,newVal:8,color:'#ED7D31'},
   {time:'2026-07-13',track:'AI智能锁',indicator:'竞对动态',oldVal:10,newVal:13,color:'#C00000'},
@@ -2107,14 +1972,10 @@ let barChart = null;
 let editContext = null;
 
 // ===== HELPERS =====
-function getTotal(t){ return t.stationIn ? Math.round((t.stationIn.score + t.stationOut.score)/2) : t.scores.supply + t.scores.deal + t.scores.user + t.scores.competition; }
-function getPrevTotal(t){ return t.prevStationIn ? Math.round((t.prevStationIn.score + t.prevStationOut.score)/2) : t.prevScores.supply + t.prevScores.deal + t.prevScores.user + t.prevScores.competition; }
+function getTotal(t){ return t.scores.supply + t.scores.deal + t.scores.user + t.scores.competition; }
+function getPrevTotal(t){ return t.prevScores.supply + t.prevScores.deal + t.prevScores.user + t.prevScores.competition; }
 function getStage(score, track){
-  // Use explicit stage if set on track
-  if(track && track.stage){
-    const found = STAGES.find(s => s.name === track.stage);
-    if(found) return found;
-  }
+  // 阶段完全由总分区间决定（与成熟度评分模型一致），不使用可能过期的显式 stage 字段
   for(let s of STAGES) if(score >= s.min && score <= s.max) return s;
   return STAGES[STAGES.length-1];
 }
@@ -2719,25 +2580,11 @@ function addHistoryEntry(trackName, indicator, oldVal, newVal){
     newVal: newVal,
     color: TRACK_COLORS[tracks.findIndex(t=>t.name===trackName)] || '#999'
   });
-  document.getElementById('lastUpdate').textContent = `最近更新：${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
 }
 
 // ===== ACTIONS =====
 function refreshData(){
-  // Simulate small random changes
-  tracks.forEach(t => {
-    ['supply','deal','user','competition'].forEach(dk => {
-      const change = Math.random() > 0.6 ? (Math.random()>0.5 ? 1 : -1) : 0;
-      t.scores[dk] = Math.max(0, Math.min(25, t.scores[dk] + change));
-    });
-    // Recalc indicators
-    [0,1,2,3].forEach(di => {
-      const dimKey = ['supply','deal','user','competition'][di];
-      redistributeIndicators(t, di, t.scores[dimKey]);
-    });
-  });
-  const now = new Date();
-  document.getElementById('lastUpdate').textContent = `最近更新：${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+  // 重新渲染当前权威数据（不做任何随机变更，避免编造数据）
   renderAll();
 }
 
@@ -2868,6 +2715,60 @@ function renderKpiBoard(){
 }
 
 // ===== RENDER ALL =====
+function renderExcelOverview(){
+  const body = document.getElementById('excelOverviewBody');
+  if(!body) return;
+  const rankColors = ['#FFD700','#C0C0C0','#CD7F32','#94A3B8','#94A3B8'];
+  const rows = tracks.map(t => ({t, total:getTotal(t), prev:getPrevTotal(t)}))
+                     .sort((a,b)=>b.total-a.total);
+  body.innerHTML = rows.map((r,i) => {
+    const dims = getDimScores(r.t);
+    const stage = getStage(r.total, r.t);
+    const diff = r.total - r.prev;
+    const diffHtml = diff>0 ? `<span class="change-up">&#9650; +${diff}</span>`
+                    : diff<0 ? `<span class="change-down">&#9660; ${diff}</span>`
+                    : `<span style="color:var(--text-secondary)">&#9644; 0</span>`;
+    return `<tr>
+      <td><span class="rank-num" style="background:${rankColors[i]}">${i+1}</span></td>
+      <td>${r.t.name}</td>
+      <td><span class="score-pill ${scoreClass(dims[0],25)}">${dims[0]}</span></td>
+      <td><span class="score-pill ${scoreClass(dims[1],25)}">${dims[1]}</span></td>
+      <td><span class="score-pill ${scoreClass(dims[2],25)}">${dims[2]}</span></td>
+      <td><span class="score-pill ${scoreClass(dims[3],25)}">${dims[3]}</span></td>
+      <td><strong style="font-size:1.05rem;color:var(--primary)">${r.total}</strong></td>
+      <td><span class="stage-badge ${stage.cls}">${stage.name}</span></td>
+      <td>${r.prev}</td>
+      <td>${diffHtml}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderWeeklyRank(){
+  const body = document.getElementById('weeklyRankBody');
+  if(!body) return;
+  const rankColors = ['#FFD700','#C0C0C0','#CD7F32','',''];
+  const rows = tracks.map(t => ({t, total:getTotal(t), prev:getPrevTotal(t)}))
+                     .sort((a,b)=>b.total-a.total);
+  body.innerHTML = rows.map((r,i) => {
+    const dims = getDimScores(r.t);
+    const stage = getStage(r.total, r.t);
+    const diff = r.total - r.prev;
+    const diffHtml = diff>0 ? `<span class="change-up">&#9650; +${diff}</span>`
+                    : diff<0 ? `<span class="change-down">&#9660; ${diff}</span>`
+                    : `<span style="color:var(--text-secondary)">&#9644; 0</span>`;
+    const rankStyle = rankColors[i] ? ` style="color:${rankColors[i]}"` : '';
+    return `<tr>
+      <td><strong${rankStyle}>${i+1}</strong></td>
+      <td style="font-weight:600">${r.t.name}</td>
+      <td><strong>${r.total}</strong>/100</td>
+      <td><span class="stage-badge ${stage.cls}">${stage.name}</span></td>
+      <td>${dims[0]}</td><td>${dims[1]}</td><td>${dims[2]}</td><td>${dims[3]}</td>
+      <td>${r.prev}</td>
+      <td>${diffHtml}</td>
+    </tr>`;
+  }).join('');
+}
+
 function renderAll(){
   renderKPI();
   renderTrackCards();
@@ -2878,6 +2779,8 @@ function renderAll(){
   renderHistory();
   renderDetailBlocks();
   renderKpiBoard();
+  renderExcelOverview();
+  renderWeeklyRank();
 }
 
 // ===== INIT =====

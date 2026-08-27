@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>商机孵化实时看板 - 天猫行业运营</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// 当外部 Chart.js CDN 不可达时的降级桩, 保证核心数据指标仍可渲染
+if(typeof window.Chart==='undefined'){
+  window.Chart = class {
+    constructor(ctx, cfg){ this.ctx=ctx; this.cfg=cfg; }
+    destroy(){} update(){} reset(){} resize(){} stop(){}
+  };
+}
+</script>
 <style>
 /* ===== CSS Reset & Base ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
